@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohith S — AI & Data Science Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#09090b;
+  --bg2:#111113;
+  --bg3:#18181b;
+  --card:#1c1c1f;
+  --border:#2a2a2e;
+  --border2:#333338;
+  --accent:#00e5a0;
+  --accent2:#00b87d;
+  --accent-dim:rgba(0,229,160,0.08);
+  --accent-dim2:rgba(0,229,160,0.15);
+  --text:#f4f4f5;
+  --text2:#a1a1aa;
+  --text3:#71717a;
+  --blue:#3b82f6;
+  --purple:#a78bfa;
+  --coral:#fb7185;
+  --amber:#fbbf24;
+  --font-head:'Syne',sans-serif;
+  --font-body:'DM Sans',sans-serif;
+  --font-mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(9,9,11,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem}
+.nav-inner{max-width:1100px;margin:0 auto;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-head);font-weight:800;font-size:1.1rem;letter-spacing:-0.02em;color:var(--text)}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:0.875rem;font-weight:400;transition:color 0.2s;letter-spacing:0.01em}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{background:var(--accent);color:#000;font-family:var(--font-head);font-weight:700;font-size:0.8rem;padding:0.5rem 1.2rem;border-radius:6px;text-decoration:none;letter-spacing:0.04em;transition:opacity 0.2s}
+.nav-cta:hover{opacity:0.85}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:0 2rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;right:-100px;width:700px;height:700px;background:radial-gradient(circle,rgba(0,229,160,0.06) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-100px;left:-150px;width:500px;height:500px;background:radial-gradient(circle,rgba(59,130,246,0.05) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:1100px;margin:0 auto;width:100%;padding-top:60px}
+.hero-tag{display:inline-flex;align-items:center;gap:0.5rem;background:var(--accent-dim);border:1px solid rgba(0,229,160,0.2);border-radius:999px;padding:0.3rem 1rem;font-size:0.78rem;color:var(--accent);font-family:var(--font-mono);letter-spacing:0.05em;margin-bottom:2rem}
+.hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+.hero h1{font-family:var(--font-head);font-weight:800;font-size:clamp(3rem,7vw,5.5rem);line-height:1.0;letter-spacing:-0.03em;margin-bottom:0.5rem}
+.hero h1 .line2{color:var(--accent)}
+.hero-sub{font-size:1.15rem;color:var(--text2);max-width:580px;margin:1.5rem 0 2.5rem;font-weight:300;line-height:1.75}
+.hero-sub strong{color:var(--text);font-weight:500}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:4rem}
+.btn-primary{background:var(--accent);color:#000;font-family:var(--font-head);font-weight:700;font-size:0.9rem;padding:0.8rem 2rem;border-radius:8px;text-decoration:none;letter-spacing:0.02em;transition:all 0.2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,229,160,0.25)}
+.btn-secondary{background:transparent;color:var(--text);font-family:var(--font-head);font-weight:600;font-size:0.9rem;padding:0.8rem 2rem;border-radius:8px;border:1px solid var(--border2);text-decoration:none;letter-spacing:0.02em;transition:all 0.2s}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.hero-stats{display:flex;gap:3rem;flex-wrap:wrap}
+.stat{display:flex;flex-direction:column}
+.stat-num{font-family:var(--font-head);font-size:2rem;font-weight:800;color:var(--text);line-height:1}
+.stat-label{font-size:0.78rem;color:var(--text3);margin-top:0.3rem;letter-spacing:0.05em;text-transform:uppercase}
+
+/* SECTIONS */
+section{padding:6rem 2rem}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-tag{font-family:var(--font-mono);font-size:0.75rem;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.75rem}
+.section-title{font-family:var(--font-head);font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-0.03em;line-height:1.1;margin-bottom:1rem}
+.section-sub{color:var(--text2);max-width:540px;font-size:1rem;line-height:1.75}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--border);border-radius:16px;overflow:hidden;margin-top:3rem;border:1px solid var(--border)}
+.skill-card{background:var(--card);padding:1.75rem;transition:background 0.2s}
+.skill-card:hover{background:var(--bg3)}
+.skill-icon{width:40px;height:40px;border-radius:10px;background:var(--accent-dim);border:1px solid rgba(0,229,160,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.1rem}
+.skill-card h3{font-family:var(--font-head);font-size:0.9rem;font-weight:700;margin-bottom:0.75rem;letter-spacing:0.01em}
+.skill-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
+.tag{background:var(--bg2);border:1px solid var(--border2);border-radius:5px;padding:0.2rem 0.6rem;font-size:0.72rem;color:var(--text2);font-family:var(--font-mono)}
+
+/* EXPERIENCE / INTERNSHIP */
+.experience-block{margin-top:3rem;border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.exp-header{background:var(--card);padding:1.75rem 2rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem}
+.exp-role{font-family:var(--font-head);font-size:1.2rem;font-weight:700;margin-bottom:0.25rem}
+.exp-company{color:var(--accent);font-size:0.9rem;font-weight:500}
+.exp-meta{font-size:0.8rem;color:var(--text3);font-family:var(--font-mono);text-align:right;line-height:1.6}
+.exp-body{padding:1.75rem 2rem}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:0.85rem}
+.exp-bullets li{display:flex;gap:0.75rem;font-size:0.92rem;color:var(--text2);line-height:1.65}
+.exp-bullets li::before{content:'▹';color:var(--accent);flex-shrink:0;margin-top:0.05rem}
+.exp-bullets li strong{color:var(--text);font-weight:500}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.25rem;margin-top:3rem}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:all 0.25s;position:relative;overflow:hidden}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform 0.3s;transform-origin:left}
+.project-card:hover{border-color:var(--border2);transform:translateY(-3px)}
+.project-card:hover::before{transform:scaleX(1)}
+.project-year{font-family:var(--font-mono);font-size:0.72rem;color:var(--text3);margin-bottom:0.75rem;letter-spacing:0.05em}
+.project-title{font-family:var(--font-head);font-size:1.05rem;font-weight:700;margin-bottom:0.5rem;line-height:1.3}
+.project-tech{font-size:0.78rem;color:var(--accent);font-family:var(--font-mono);margin-bottom:1rem;font-weight:500}
+.project-desc{font-size:0.875rem;color:var(--text2);line-height:1.7;margin-bottom:1.25rem}
+.project-badge{display:inline-flex;align-items:center;gap:0.35rem;background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.2);border-radius:5px;padding:0.25rem 0.65rem;font-size:0.72rem;color:var(--accent);font-family:var(--font-mono)}
+
+/* PUBLICATIONS */
+.pub-list{margin-top:3rem;display:flex;flex-direction:column;gap:1.25rem}
+.pub-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem 1.75rem;display:flex;gap:1.5rem;align-items:flex-start;transition:border-color 0.2s}
+.pub-card:hover{border-color:var(--border2)}
+.pub-num{font-family:var(--font-head);font-size:2.5rem;font-weight:800;color:var(--border2);line-height:1;flex-shrink:0;width:48px}
+.pub-title{font-family:var(--font-head);font-size:0.95rem;font-weight:700;margin-bottom:0.4rem;line-height:1.4}
+.pub-venue{font-size:0.8rem;color:var(--text3);font-family:var(--font-mono)}
+.pub-venue span{color:var(--accent)}
+
+/* EDUCATION */
+.edu-block{margin-top:3rem;background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.edu-item{padding:1.75rem 2rem;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap}
+.edu-item+.edu-item{border-top:1px solid var(--border)}
+.edu-degree{font-family:var(--font-head);font-size:1rem;font-weight:700;margin-bottom:0.25rem}
+.edu-school{font-size:0.875rem;color:var(--accent)}
+.edu-meta{font-size:0.8rem;color:var(--text3);font-family:var(--font-mono);text-align:right;line-height:1.6;flex-shrink:0}
+.edu-courses{margin-top:0.65rem;display:flex;flex-wrap:wrap;gap:0.35rem}
+
+/* ACHIEVEMENTS */
+.ach-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:3rem}
+.ach-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;transition:all 0.2s}
+.ach-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.ach-icon{font-size:1.75rem;margin-bottom:0.75rem}
+.ach-title{font-family:var(--font-head);font-size:0.9rem;font-weight:700;margin-bottom:0.5rem}
+.ach-desc{font-size:0.82rem;color:var(--text2);line-height:1.65}
+
+/* CONTACT */
+.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.contact-info{display:flex;flex-direction:column;gap:1rem;margin-top:2rem}
+.contact-link{display:flex;align-items:center;gap:0.85rem;color:var(--text2);text-decoration:none;font-size:0.9rem;padding:1rem 1.25rem;background:var(--card);border:1px solid var(--border);border-radius:10px;transition:all 0.2s}
+.contact-link:hover{border-color:var(--accent);color:var(--accent);transform:translateX(4px)}
+.contact-link-icon{width:36px;height:36px;border-radius:8px;background:var(--accent-dim);border:1px solid rgba(0,229,160,0.2);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.contact-cta{background:linear-gradient(135deg,var(--accent-dim) 0%,rgba(59,130,246,0.06) 100%);border:1px solid var(--border);border-radius:20px;padding:3rem;text-align:center}
+.contact-cta h3{font-family:var(--font-head);font-size:1.5rem;font-weight:800;margin-bottom:0.75rem;letter-spacing:-0.02em}
+.contact-cta p{color:var(--text2);font-size:0.9rem;margin-bottom:2rem}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:0.8rem;color:var(--text3)}
+footer span{color:var(--accent)}
+
+/* GRID DOTS BG */
+.dot-bg{position:absolute;inset:0;background-image:radial-gradient(circle,#2a2a2e 1px,transparent 1px);background-size:32px 32px;opacity:0.4;pointer-events:none;z-index:0}
+.hero .dot-bg{opacity:0.25}
+
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fade-up.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hero h1{font-size:2.5rem}
+  .hero-stats{gap:2rem}
+  .contact-inner{grid-template-columns:1fr}
+  .projects-grid{grid-template-columns:1fr}
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+
+/* NOISE TEXTURE */
+.noise::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.35}
+</style>
+</head>
+<body class="noise">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">Mohith<span>.</span>S</div>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#publications">Research</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="mailto:mohithnaik002@gmail.com" class="nav-cta">Hire Me</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="dot-bg"></div>
+  <div class="hero-inner" style="position:relative;z-index:1">
+    <div class="hero-tag">
+      <span>Available for Opportunities</span>
+    </div>
+    <h1>
+      <div class="line1">Building Intelligent</div>
+      <div class="line2">AI Systems.</div>
+    </h1>
+    <p class="hero-sub">
+      Final-year <strong>AI & Data Science Engineer</strong> with published research, production-grade ML systems, and real-world internship experience. Building things that matter — from deepfake detectors to offline personal assistants.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">2</span>
+        <span class="stat-label">Published Papers</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">5+</span>
+        <span class="stat-label">Projects Built</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">1st</span>
+        <span class="stat-label">Prize Winner</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">3mo</span>
+        <span class="stat-label">Industry Experience</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background:var(--bg2)">
+  <div class="section-inner">
+    <div class="fade-up">
+      <div class="section-tag">// skills</div>
+      <h2 class="section-title">Technical Arsenal</h2>
+      <p class="section-sub">A full-stack AI engineering toolkit — from low-level model training to production deployment.</p>
+    </div>
+    <div class="skills-grid fade-up">
+      <div class="skill-card">
+        <div class="skill-icon">🐍</div>
+        <h3>Languages</h3>
+        <div class="skill-tags">
+          <span class="tag">Python</span><span class="tag">Java</span><span class="tag">C</span><span class="tag">SQL</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🧠</div>
+        <h3>ML / AI</h3>
+        <div class="skill-tags">
+          <span class="tag">TensorFlow</span><span class="tag">scikit-learn</span><span class="tag">CNNs</span><span class="tag">RNNs</span><span class="tag">NLP</span><span class="tag">LLMs</span><span class="tag">RAG</span><span class="tag">LangChain</span><span class="tag">OpenCV</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <h3>Data & BI</h3>
+        <div class="skill-tags">
+          <span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Power BI</span><span class="tag">Tableau</span><span class="tag">DAX</span><span class="tag">EDA</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🗄️</div>
+        <h3>Databases</h3>
+        <div class="skill-tags">
+          <span class="tag">MongoDB</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">FAISS</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">⚙️</div>
+        <h3>Tools & Infra</h3>
+        <div class="skill-tags">
+          <span class="tag">Git</span><span class="tag">REST APIs</span><span class="tag">Ollama</span><span class="tag">Jupyter</span><span class="tag">Colab</span><span class="tag">Solidity</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🤝</div>
+        <h3>Soft Skills</h3>
+        <div class="skill-tags">
+          <span class="tag">Analytical Thinking</span><span class="tag">Problem Solving</span><span class="tag">Cross-functional</span><span class="tag">Communication</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="fade-up">
+      <div class="section-tag">// experience</div>
+      <h2 class="section-title">Industry Experience</h2>
+      <p class="section-sub">Real-world AI engineering at a product company — building and shipping ML-powered features end to end.</p>
+    </div>
+    <div class="experience-block fade-up">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">AI Engineer Intern</div>
+          <div class="exp-company">Global Logica Technologies · Basaveshwarnagar, Bengaluru</div>
+        </div>
+        <div class="exp-meta">
+          3 Months<br>
+          <span style="color:var(--accent)">AI-Powered E-Commerce</span>
+        </div>
+      </div>
+      <div class="exp-body">
+        <ul class="exp-bullets">
+          <li><span><strong>Developed and deployed an AI-driven product recommendation engine</strong> using collaborative filtering and NLP-based semantic search, improving product discoverability and driving measurable uplift in user engagement metrics.</span></li>
+          <li><span>Engineered <strong>intelligent data optimization pipelines</strong> for real-time inventory forecasting, dynamic pricing, and customer segmentation — reducing data processing latency by 40% through query optimization and caching strategies.</span></li>
+          <li><span>Built an <strong>automated data quality and anomaly detection module</strong> using ML models to flag erroneous listings, fraudulent transactions, and catalog inconsistencies — improving platform data integrity at scale.</span></li>
+          <li><span>Collaborated cross-functionally with product and backend teams to integrate AI modules via REST APIs; documented model performance and delivered weekly insights to stakeholders, gaining <strong>end-to-end production ML experience</strong>.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="background:var(--bg2)">
+  <div class="section-inner">
+    <div class="fade-up">
+      <div class="section-tag">// projects</div>
+      <h2 class="section-title">Projects Built</h2>
+      <p class="section-sub">From published research to prize-winning hardware — each project solves a real problem.</p>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card fade-up">
+        <div class="project-year">2024 – 2025 · Published</div>
+        <div class="project-title">Deepfake Detection System</div>
+        <div class="project-tech">CNN + RNN Architecture · TensorFlow · OpenCV</div>
+        <div class="project-desc">End-to-end deepfake detection pipeline classifying manipulated images and videos with high accuracy. Optimized for near-real-time inference on benchmark datasets.</div>
+        <span class="project-badge">📄 ICAIH 2025 — Published</span>
+      </div>
+      <div class="project-card fade-up">
+        <div class="project-year">2024</div>
+        <div class="project-title">SATURN — Sentiment Analysis Tool</div>
+        <div class="project-tech">NLP · Transformers · ML · TF-IDF</div>
+        <div class="project-desc">Advanced social media sentiment engine using transformer-based NLP and classical ML. Classified tweets and reviews into positive, negative, and neutral with >85% accuracy.</div>
+        <span class="project-badge">🎯 &gt;85% Accuracy</span>
+      </div>
+      <div class="project-card fade-up">
+        <div class="project-year">2024 – 2025 · Published</div>
+        <div class="project-title">Corrupt Watch — AI & Blockchain Civic Platform</div>
+        <div class="project-tech">NLP · Computer Vision · Solidity · Smart Contracts</div>
+        <div class="project-desc">Secure civic grievance platform combining AI-powered complaint analysis with blockchain immutability. NLP pipeline auto-classifies and routes grievances in real time.</div>
+        <span class="project-badge">📡 IEEE Conference</span>
+      </div>
+      <div class="project-card fade-up">
+        <div class="project-year">2024 – 2025</div>
+        <div class="project-title">Offline Personal AI Assistant</div>
+        <div class="project-tech">LLaMA · Mistral · Ollama · FAISS · LangChain · Whisper</div>
+        <div class="project-desc">Fully offline, privacy-first AI assistant running quantized LLMs locally. RAG pipeline over personal knowledge bases, voice interface, and task automation — zero cloud dependency.</div>
+        <span class="project-badge">⚡ Sub-2s Latency · 4-bit GGUF</span>
+      </div>
+      <div class="project-card fade-up">
+        <div class="project-year">2023 · 1st Prize</div>
+        <div class="project-title">FPV Drone with Environmental Sensing</div>
+        <div class="project-tech">Embedded Systems · IoT · Sensor Fusion</div>
+        <div class="project-desc">3–4 kg payload FPV drone with real-time camera feed, air quality sensors, and weather data capture. Environmental monitoring pipeline for agriculture and disaster response.</div>
+        <span class="project-badge">🏆 1st Prize — 30+ Teams</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-inner">
+    <div class="fade-up">
+      <div class="section-tag">// research</div>
+      <h2 class="section-title">Published Research</h2>
+      <p class="section-sub">Peer-reviewed publications at international AI and IEEE conferences — rare for an undergraduate.</p>
+    </div>
+    <div class="pub-list fade-up">
+      <div class="pub-card">
+        <div class="pub-num">01</div>
+        <div>
+          <div class="pub-title">"Deepfake Detection with Advanced CNN and RNN Techniques"</div>
+          <div class="pub-venue">International Conference on Artificial Intelligence in Healthcare (ICAIH 2025) · <span>St Aloysius (Deemed University), Mangalore</span> · Peer-reviewed, 2025</div>
+        </div>
+      </div>
+      <div class="pub-card">
+        <div class="pub-num">02</div>
+        <div>
+          <div class="pub-title">"Corrupt Watch: AI & Blockchain Integrated City"</div>
+          <div class="pub-venue">IEEE International Conference · <span>Ghousia College of Engineering, Ramanagara</span> · Peer-reviewed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section style="background:var(--bg2)" id="education">
+  <div class="section-inner">
+    <div class="fade-up">
+      <div class="section-tag">// education</div>
+      <h2 class="section-title">Academic Background</h2>
+    </div>
+    <div class="edu-block fade-up">
+      <div class="edu-item">
+        <div>
+          <div class="edu-degree">B.E. — Artificial Intelligence & Data Science</div>
+          <div class="edu-school">BGSCET (Mahalakshmi Layout) · Bengaluru</div>
+          <div class="edu-courses">
+            <span class="tag">Machine Learning</span><span class="tag">Deep Learning</span><span class="tag">NLP</span><span class="tag">Computer Vision</span><span class="tag">DSA</span><span class="tag">DBMS</span><span class="tag">Cloud Computing</span>
+          </div>
+        </div>
+        <div class="edu-meta">2022 – 2026<br><span style="color:var(--accent)">Final Year</span></div>
+      </div>
+      <div class="edu-item">
+        <div>
+          <div class="edu-degree">Class 11–12 · Science / PCM</div>
+          <div class="edu-school">Sri Chaitanya Techno · Bengaluru</div>
+        </div>
+        <div class="edu-meta">2020 – 2022</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-inner">
+    <div class="fade-up">
+      <div class="section-tag">// achievements</div>
+      <h2 class="section-title">Awards & Recognition</h2>
+    </div>
+    <div class="ach-grid fade-up">
+      <div class="ach-card">
+        <div class="ach-icon">🏆</div>
+        <div class="ach-title">1st Prize — FPV Drone</div>
+        <div class="ach-desc">Techno-Cultural Fest, BGS College of Engineering. Recognized for engineering innovation among 30+ competing teams.</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">📄</div>
+        <div class="ach-title">Dual Published Researcher</div>
+        <div class="ach-desc">Research accepted at both an international healthcare AI conference (ICAIH 2025) and an IEEE conference — rare for an undergraduate.</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">⚡</div>
+        <div class="ach-title">Hackathon Participant (4+)</div>
+        <div class="ach-desc">Consistent participation in AI, ML, and civic tech hackathons — demonstrating applied problem-solving under pressure.</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">🤖</div>
+        <div class="ach-title">Industry Internship</div>
+        <div class="ach-desc">Shipped production ML features at Global Logica Technologies — end-to-end AI engineering experience before graduation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:var(--bg2)">
+  <div class="section-inner">
+    <div class="contact-inner">
+      <div class="fade-up">
+        <div class="section-tag">// contact</div>
+        <h2 class="section-title">Let's Build Something.</h2>
+        <p class="section-sub" style="margin-top:1rem">Open to full-time roles, internships, and research collaborations at companies building real AI products.</p>
+        <div class="contact-info">
+          <a href="mailto:mohithnaik002@gmail.com" class="contact-link">
+            <div class="contact-link-icon">✉️</div>
+            <span>mohithnaik002@gmail.com</span>
+          </a>
+          <a href="tel:+919880975146" class="contact-link">
+            <div class="contact-link-icon">📞</div>
+            <span>+91 98809 75146</span>
+          </a>
+          <a href="https://linkedin.com/in/mohith-naik-121235234" target="_blank" class="contact-link">
+            <div class="contact-link-icon">🔗</div>
+            <span>linkedin.com/in/mohith-naik-121235234</span>
+          </a>
+        </div>
+      </div>
+      <div class="contact-cta fade-up">
+        <h3>Ready to Contribute</h3>
+        <p>Final-year AI & DS engineer with publications, production experience, and a track record of shipping. Looking for opportunities to build AI products at scale.</p>
+        <a href="mailto:mohithnaik002@gmail.com" class="btn-primary" style="display:inline-block">Send a Message →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Built by <span>Mohith S</span> · AI & Data Science Engineer · Bengaluru, India</p>
+</footer>
+
+<script>
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
