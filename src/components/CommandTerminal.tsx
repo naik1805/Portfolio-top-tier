@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { WindowId } from '../types'
+import { useTheme } from '../theme'
 
 type Props = {
   open: boolean
@@ -17,11 +18,14 @@ const commands: { cmd: string; hint: string; action: string }[] = [
   { cmd: 'research', hint: 'Open research', action: 'research' },
   { cmd: 'contact', hint: 'Open contact', action: 'contact' },
   { cmd: 'github', hint: 'Open GitHub', action: 'github' },
-  { cmd: 'invert', hint: 'Toggle negative mode', action: 'invert' },
+  { cmd: 'dark', hint: 'Switch to dark mode', action: 'dark' },
+  { cmd: 'light', hint: 'Switch to light mode', action: 'light' },
+  { cmd: 'theme', hint: 'Toggle light/dark', action: 'theme' },
   { cmd: 'close', hint: 'Close terminal', action: 'close' },
 ]
 
 export function CommandTerminal({ open, onClose, onOpen }: Props) {
+  const { toggleTheme, setTheme } = useTheme()
   const [query, setQuery] = useState('')
   const [active, setActive] = useState(0)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -59,8 +63,18 @@ export function CommandTerminal({ open, onClose, onOpen }: Props) {
       onClose()
       return
     }
-    if (action === 'invert') {
-      document.documentElement.classList.toggle('negative')
+    if (action === 'dark') {
+      setTheme('dark')
+      onClose()
+      return
+    }
+    if (action === 'light') {
+      setTheme('light')
+      onClose()
+      return
+    }
+    if (action === 'theme') {
+      toggleTheme()
       onClose()
       return
     }

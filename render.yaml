@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: mohith-naik-portfolio
+    runtime: static
+    repo: https://github.com/naik1805/Portfolio-top-tier
+    branch: main
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    autoDeployTrigger: commit
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

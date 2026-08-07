@@ -1,8 +1,8 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useRef } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
-import { useRef } from 'react'
 import { skillRadar, skills } from '../data/resume'
 import { Reveal } from './Reveal'
+import { useTheme } from '../theme'
 
 const featured = new Set([
   'FastAPI',
@@ -71,6 +71,12 @@ function RadarChart({
   activeIndex: number | null
   onHover: (i: number | null) => void
 }) {
+  const { theme } = useTheme()
+  const signal = theme === 'dark' ? '#E85D3D' : '#C23B22'
+  const oxide = theme === 'dark' ? '#3DBA8E' : '#1A5F4A'
+  const ink = theme === 'dark' ? '#E8EEF4' : '#12161C'
+  const muted = theme === 'dark' ? '#9AA6B5' : '#7A858F'
+  const gridStroke = theme === 'dark' ? 'rgba(232,238,244,0.12)' : 'rgba(18,22,28,0.1)'
   const size = 380
   const cx = size / 2
   const cy = size / 2
@@ -115,8 +121,8 @@ function RadarChart({
       <svg ref={ref} className="radar-wrap" viewBox={`0 0 ${size} ${size}`} aria-hidden>
         <defs>
           <radialGradient id="radarFill" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#C23B22" stopOpacity="0.28" />
-            <stop offset="100%" stopColor="#C23B22" stopOpacity="0.04" />
+            <stop offset="0%" stopColor={signal} stopOpacity="0.28" />
+            <stop offset="100%" stopColor={signal} stopOpacity="0.04" />
           </radialGradient>
           <filter id="nodeGlow">
             <feGaussianBlur stdDeviation="1.2" result="coloredBlur" />
@@ -132,7 +138,7 @@ function RadarChart({
             key={ri}
             points={ring.map((p) => `${p.x},${p.y}`).join(' ')}
             fill="none"
-            stroke={ri === levels - 1 ? 'rgba(194,59,34,0.25)' : 'rgba(18,22,28,0.1)'}
+            stroke={ri === levels - 1 ? `${signal}40` : gridStroke}
             strokeWidth={1}
           />
         ))}
@@ -147,7 +153,7 @@ function RadarChart({
               y1={cy}
               x2={p.x}
               y2={p.y}
-              stroke={hot ? 'rgba(194,59,34,0.55)' : 'rgba(18,22,28,0.1)'}
+              stroke={hot ? `${signal}8c` : gridStroke}
               strokeWidth={hot ? 1.5 : 1}
             />
           )
@@ -157,7 +163,7 @@ function RadarChart({
           className="radar-data"
           points={poly}
           fill="url(#radarFill)"
-          stroke="#C23B22"
+          stroke={signal}
           strokeWidth={2.5}
           initial={{ opacity: 0, scale: 0.55 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
@@ -167,7 +173,7 @@ function RadarChart({
 
         {dataPts.map((p, i) => {
           const hot = activeIndex === i
-          const color = i % 2 ? '#1A5F4A' : '#C23B22'
+          const color = i % 2 ? oxide : signal
           return (
             <g
               key={i}
@@ -201,7 +207,7 @@ function RadarChart({
               y={p.y}
               textAnchor="middle"
               dominantBaseline="middle"
-              fill={hot ? '#12161C' : '#7A858F'}
+              fill={hot ? ink : muted}
               fontSize={hot ? 11 : 10}
               fontWeight={hot ? 600 : 400}
               fontFamily="IBM Plex Mono, monospace"
@@ -231,13 +237,13 @@ function RadarChart({
             >
               <div className="radar-metric-top">
                 <span>{s.label}</span>
-                <strong style={{ color: i % 2 ? '#1A5F4A' : '#C23B22' }}>{s.value}%</strong>
+                <strong style={{ color: i % 2 ? oxide : signal }}>{s.value}%</strong>
               </div>
               <div className="radar-bar">
                 <motion.div
                   className="radar-bar-fill"
                   style={{
-                    background: i % 2 ? '#1A5F4A' : '#C23B22',
+                    background: i % 2 ? oxide : signal,
                   }}
                   initial={{ width: 0 }}
                   animate={inView ? { width: `${s.value}%` } : {}}

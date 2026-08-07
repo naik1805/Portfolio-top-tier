@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion'
-import { Mail, Menu, Terminal, X } from 'lucide-react'
+import { Mail, Menu, Moon, Sun, Terminal, X } from 'lucide-react'
 import type { WindowId } from '../types'
 import { profile } from '../data/resume'
+import { useTheme } from '../theme'
 
 const links: { id: WindowId; label: string }[] = [
   { id: 'about', label: 'About' },
@@ -20,6 +21,7 @@ type Props = {
 }
 
 export function Nav({ active, onOpen, onOpenTerminal }: Props) {
+  const { theme, toggleTheme } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [sectionActive, setSectionActive] = useState<WindowId | null>(null)
@@ -81,6 +83,15 @@ export function Nav({ active, onOpen, onOpenTerminal }: Props) {
         <div className="nav-actions">
           <button
             type="button"
+            className="nav-theme"
+            onClick={toggleTheme}
+            aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+            title={theme === 'light' ? 'Dark mode' : 'Light mode'}
+          >
+            {theme === 'light' ? <Moon size={15} /> : <Sun size={15} />}
+          </button>
+          <button
+            type="button"
             className="nav-cmd"
             onClick={onOpenTerminal}
             aria-label="Open command terminal"
@@ -104,13 +115,23 @@ export function Nav({ active, onOpen, onOpenTerminal }: Props) {
             <Mail size={14} /> Hire me
           </a>
         </div>
-        <button
-          className="nav-toggle"
-          aria-label="Toggle menu"
-          onClick={() => setMenuOpen((v) => !v)}
-        >
-          {menuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="nav-mobile-tools">
+          <button
+            type="button"
+            className="nav-theme"
+            onClick={toggleTheme}
+            aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+          >
+            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+          </button>
+          <button
+            className="nav-toggle"
+            aria-label="Toggle menu"
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </header>
 
       <AnimatePresence>
@@ -137,6 +158,15 @@ export function Nav({ active, onOpen, onOpenTerminal }: Props) {
                 {l.label}
               </motion.button>
             ))}
+            <button
+              type="button"
+              onClick={() => {
+                toggleTheme()
+                setMenuOpen(false)
+              }}
+            >
+              {theme === 'light' ? 'Dark mode' : 'Light mode'}
+            </button>
             <button
               type="button"
               onClick={() => {

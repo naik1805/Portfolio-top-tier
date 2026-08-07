@@ -2,12 +2,9 @@ import { useMemo, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Float, Line, Sphere } from '@react-three/drei'
 import * as THREE from 'three'
+import { useTheme } from '../theme'
 
-const INK = '#12161C'
-const SIGNAL = '#C23B22'
-const OXIDE = '#1A5F4A'
-
-function NeuralNetwork() {
+function NeuralNetwork({ ink, signal, oxide }: { ink: string; signal: string; oxide: string }) {
   const group = useRef<THREE.Group>(null)
   const nodes = useMemo(() => {
     const pts: THREE.Vector3[] = []
@@ -56,7 +53,7 @@ function NeuralNetwork() {
         <Line
           key={`e-${i}`}
           points={pair}
-          color={INK}
+          color={ink}
           transparent
           opacity={0.12 + (i % 5) * 0.015}
           lineWidth={1}
@@ -66,7 +63,7 @@ function NeuralNetwork() {
         <Float key={`n-${i}`} speed={1 + (i % 4) * 0.15} floatIntensity={0.18} rotationIntensity={0.08}>
           <Sphere args={[0.065 + (i % 3) * 0.012, 16, 16]} position={p}>
             <meshStandardMaterial
-              color={i % 7 === 0 ? SIGNAL : i % 3 === 0 ? OXIDE : INK}
+              color={i % 7 === 0 ? signal : i % 3 === 0 ? oxide : ink}
               roughness={0.7}
               metalness={0.05}
             />
@@ -90,7 +87,7 @@ function OrbitRing({ radius, speed, color }: { radius: number; speed: number; co
   )
 }
 
-function Particles() {
+function Particles({ color }: { color: string }) {
   const ref = useRef<THREE.Points>(null)
   const geometry = useMemo(() => {
     const g = new THREE.BufferGeometry()
@@ -111,27 +108,34 @@ function Particles() {
 
   return (
     <points ref={ref} geometry={geometry}>
-      <pointsMaterial size={0.018} color="#5A6570" transparent opacity={0.28} sizeAttenuation />
+      <pointsMaterial size={0.018} color={color} transparent opacity={0.28} sizeAttenuation />
     </points>
   )
 }
 
 export function NeuralScene() {
+  const { theme } = useTheme()
+  const ink = theme === 'dark' ? '#E8EEF4' : '#12161C'
+  const signal = theme === 'dark' ? '#E85D3D' : '#C23B22'
+  const oxide = theme === 'dark' ? '#3DBA8E' : '#1A5F4A'
+  const dust = theme === 'dark' ? '#9AA6B5' : '#5A6570'
+
   return (
     <Canvas
+      key={theme}
       camera={{ position: [0, 0, 7.4], fov: 40 }}
       dpr={[1, 1.6]}
       gl={{ antialias: true, alpha: true, premultipliedAlpha: false }}
       style={{ width: '100%', height: '100%', background: 'transparent' }}
     >
-      <ambientLight intensity={0.95} />
-      <directionalLight position={[3, 4, 5]} intensity={0.55} color="#ffffff" />
-      <directionalLight position={[-4, -1, 2]} intensity={0.25} color="#1A5F4A" />
-      <Particles />
-      <OrbitRing radius={3.1} speed={0.06} color={INK} />
-      <OrbitRing radius={3.55} speed={-0.04} color={SIGNAL} />
-      <OrbitRing radius={4} speed={0.03} color={OXIDE} />
-      <NeuralNetwork />
+      <ambientLight intensity={theme === 'dark' ? 0.7 : 0.95} />
+      <directionalLight position={[3, 4, 5]} intensity={theme === 'dark' ? 0.7 : 0.55} color="#ffffff" />
+      <directionalLight position={[-4, -1, 2]} intensity={0.25} color={oxide} />
+      <Particles color={dust} />
+      <OrbitRing radius={3.1} speed={0.06} color={ink} />
+      <OrbitRing radius={3.55} speed={-0.04} color={signal} />
+      <OrbitRing radius={4} speed={0.03} color={oxide} />
+      <NeuralNetwork ink={ink} signal={signal} oxide={oxide} />
     </Canvas>
   )
 }

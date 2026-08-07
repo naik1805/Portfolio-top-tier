@@ -1,5 +1,6 @@
-:root {
-  /* Wafer / cleanroom spec — not neon cyber */
+:root,
+html[data-theme='light'] {
+  /* Light ? wafer / cleanroom */
   --bg: #e6eae4;
   --bg-elevated: #f3f5f1;
   --bg-panel: #fbfcf9;
@@ -14,11 +15,53 @@
   --amber: #1a5f4a;
   --amber-dim: rgba(26, 95, 74, 0.12);
   --violet: #2f3b4a;
+  --nav-glass: rgba(230, 234, 228, 0.88);
+  --mobile-glass: rgba(243, 245, 241, 0.97);
+  --overlay: rgba(18, 22, 28, 0.35);
+  --grid-line: rgba(18, 22, 28, 0.05);
+  --shadow-ink: rgba(18, 22, 28, 0.12);
+  --card-wash: rgba(230, 234, 228, 0.7);
+  --marquee-em: #ff6b4a;
+  --scene-ink: #12161c;
+  --scene-signal: #c23b22;
+  --scene-oxide: #1a5f4a;
   --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
   --font-body: 'Public Sans', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
   --nav-h: 68px;
   --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+html[data-theme='dark'] {
+  /* Dark ? ink lab */
+  --bg: #0e1116;
+  --bg-elevated: #161b22;
+  --bg-panel: #1a212b;
+  --ink: #e8eef4;
+  --line: rgba(232, 238, 244, 0.1);
+  --line-strong: rgba(232, 238, 244, 0.2);
+  --text: #e8eef4;
+  --text-muted: #9aa6b5;
+  --text-dim: #6d7a8a;
+  --cyan: #e85d3d;
+  --cyan-dim: rgba(232, 93, 61, 0.16);
+  --amber: #3dba8e;
+  --amber-dim: rgba(61, 186, 142, 0.14);
+  --violet: #8b9bb4;
+  --nav-glass: rgba(14, 17, 22, 0.88);
+  --mobile-glass: rgba(14, 17, 22, 0.96);
+  --overlay: rgba(0, 0, 0, 0.55);
+  --grid-line: rgba(232, 238, 244, 0.05);
+  --shadow-ink: rgba(0, 0, 0, 0.45);
+  --card-wash: rgba(14, 17, 22, 0.55);
+  --marquee-em: #ff8a6a;
+  --scene-ink: #e8eef4;
+  --scene-signal: #e85d3d;
+  --scene-oxide: #3dba8e;
+}
+
+html {
+  color-scheme: light dark;
 }
 
 *,
@@ -43,6 +86,7 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   cursor: auto;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 button {
@@ -68,14 +112,19 @@ button {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
+html[data-theme='dark'] .noise {
+  opacity: 0.06;
+  mix-blend-mode: soft-light;
+}
+
 .grid-bg {
   pointer-events: none;
   position: fixed;
   inset: 0;
   z-index: 0;
   background-image:
-    linear-gradient(rgba(18, 22, 28, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(18, 22, 28, 0.05) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: linear-gradient(180deg, black 0%, black 40%, transparent 100%);
 }
@@ -86,8 +135,8 @@ button {
   inset: 0;
   z-index: 0;
   background:
-    radial-gradient(ellipse 45% 30% at 90% 8%, rgba(194, 59, 34, 0.08), transparent 55%),
-    radial-gradient(ellipse 40% 35% at 8% 70%, rgba(26, 95, 74, 0.07), transparent 55%);
+    radial-gradient(ellipse 45% 30% at 90% 8%, color-mix(in srgb, var(--cyan) 14%, transparent), transparent 55%),
+    radial-gradient(ellipse 40% 35% at 8% 70%, color-mix(in srgb, var(--amber) 12%, transparent), transparent 55%);
   animation: none;
 }
 
@@ -134,7 +183,7 @@ canvas {
 }
 
 .section-label::before {
-  content: '■';
+  content: '?';
   font-size: 0.45rem;
   color: var(--cyan);
 }
@@ -155,7 +204,7 @@ canvas {
   margin-bottom: 3rem;
 }
 
-/* Custom cursor off — native pointer for a less generic feel */
+/* Custom cursor off ? native pointer for a less generic feel */
 .cursor-dot,
 .cursor-ring {
   display: none;
@@ -178,7 +227,7 @@ canvas {
 }
 
 .nav.scrolled {
-  background: rgba(230, 234, 228, 0.88);
+  background: var(--nav-glass);
   backdrop-filter: blur(12px);
   border-bottom-color: var(--line);
 }
@@ -225,6 +274,30 @@ canvas {
   display: flex;
   align-items: center;
   gap: 0.55rem;
+}
+
+.nav-theme {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line-strong);
+  color: var(--text-muted);
+  transition: color 0.25s, border-color 0.25s, background 0.25s, transform 0.25s;
+}
+
+.nav-theme:hover {
+  color: var(--text);
+  border-color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+  transform: rotate(-8deg);
+}
+
+.nav-mobile-tools {
+  display: none;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .nav-github {
@@ -287,6 +360,10 @@ canvas {
     display: none;
   }
 
+  .nav-mobile-tools {
+    display: flex;
+  }
+
   .nav-toggle {
     display: flex;
   }
@@ -294,7 +371,7 @@ canvas {
   .nav-mobile {
     position: fixed;
     inset: var(--nav-h) 0 0 0;
-    background: rgba(243, 245, 241, 0.97);
+    background: var(--mobile-glass);
     backdrop-filter: blur(16px);
     display: flex;
     flex-direction: column;
@@ -578,7 +655,7 @@ canvas {
   position: relative;
   border: 1px solid var(--line);
   background:
-    linear-gradient(165deg, rgba(251, 252, 249, 0.95), rgba(230, 234, 228, 0.7));
+    linear-gradient(165deg, var(--bg-panel), var(--card-wash));
   padding: 1.25rem 1rem 1rem;
   overflow: hidden;
 }
@@ -707,7 +784,7 @@ canvas {
 .skill-card {
   position: relative;
   border: 1px solid var(--line);
-  background: linear-gradient(160deg, rgba(251, 252, 249, 0.95), rgba(230, 234, 228, 0.7));
+  background: linear-gradient(160deg, var(--bg-panel), var(--card-wash));
   padding: 1.15rem 1.15rem 1.25rem;
   overflow: hidden;
   transition: border-color 0.3s, transform 0.35s var(--ease-out);
@@ -885,13 +962,13 @@ canvas {
   border-radius: 50%;
   border: 2px solid var(--exp-accent, var(--cyan));
   background: var(--bg);
-  box-shadow: 0 0 0 4px rgba(230, 234, 228, 0.7);
+  box-shadow: 0 0 0 4px var(--bg);
 }
 
 .timeline-item.current .timeline-dot {
   background: var(--exp-accent, var(--cyan));
   box-shadow:
-    0 0 0 4px rgba(230, 234, 228, 0.7);
+    0 0 0 4px var(--bg);
 }
 
 .timeline-pulse {
@@ -916,7 +993,7 @@ canvas {
 .exp-card {
   position: relative;
   border: 1px solid var(--line);
-  background: linear-gradient(160deg, rgba(251, 252, 249, 0.95), rgba(230, 234, 228, 0.7));
+  background: linear-gradient(160deg, var(--bg-panel), var(--card-wash));
   padding: 1.35rem 1.4rem 1.45rem;
   overflow: hidden;
   transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s var(--ease-out);
@@ -1157,8 +1234,7 @@ canvas {
     linear-gradient(
       145deg,
       color-mix(in srgb, var(--accent, var(--cyan)) 16%, transparent),
-      rgba(230, 234, 228, 0.7) 55%,
-      rgba(230, 234, 228, 0.7)
+      var(--card-wash) 55%, var(--card-wash)
     );
   overflow: hidden;
   display: flex;
@@ -1621,7 +1697,7 @@ canvas {
 .window-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(18, 22, 28, 0.32);
+  background: var(--overlay);
   border: none;
   cursor: pointer;
 }
@@ -1637,7 +1713,7 @@ canvas {
   min-height: 0;
   border: 1.5px solid var(--ink);
   background: var(--bg-panel);
-  box-shadow: 12px 16px 0 rgba(18, 22, 28, 0.1);
+  box-shadow: 12px 16px 0 var(--shadow-ink);
   overflow: hidden;
 }
 
@@ -1835,10 +1911,8 @@ canvas {
   }
 }
 
-/* —— ToyFight-inspired motion layer —— */
-html.negative {
-  filter: invert(1) hue-rotate(180deg);
-}
+/* ?? ToyFight-inspired motion layer ?? */
+/* negative mode removed ? use theme toggle */
 
 .app-shell {
   opacity: 0;
@@ -1994,12 +2068,10 @@ html.negative {
 
 .marquee-track em {
   font-style: normal;
-  color: #ff6b4a;
+  color: var(--marquee-em);
 }
 
-html.negative .marquee-track em {
-  color: #c23b22;
-}
+
 
 @keyframes marquee-move {
   from {
@@ -2022,7 +2094,7 @@ html.negative .marquee-track em {
 .terminal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(18, 22, 28, 0.4);
+  background: var(--overlay);
   border: none;
   cursor: pointer;
 }
@@ -2033,7 +2105,7 @@ html.negative .marquee-track em {
   width: min(560px, 100%);
   border: 1.5px solid var(--ink);
   background: var(--bg-panel);
-  box-shadow: 10px 12px 0 rgba(18, 22, 28, 0.12);
+  box-shadow: 10px 12px 0 var(--shadow-ink);
   overflow: hidden;
 }
 
