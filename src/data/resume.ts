@@ -30,6 +30,7 @@ export const skills = {
     'Machine Learning',
     'Deep Learning',
     'NLP',
+    'Computer Vision',
     'LLMs',
     'GenAI & Agents',
     'scikit-learn',
@@ -38,7 +39,17 @@ export const skills = {
     'FAISS',
     'Ollama',
   ],
-  tools: ['Git/GitHub', 'pytest', 'Pandas', 'NumPy', 'PyArrow', 'Jupyter', 'Power BI', 'DAX'],
+  tools: [
+    'Git/GitHub',
+    'pytest',
+    'Pandas',
+    'NumPy',
+    'PyArrow',
+    'Jupyter',
+    'Power BI',
+    'DAX',
+    'Blockchain',
+  ],
 }
 
 export const skillRadar = [
@@ -127,6 +138,20 @@ export const projects = [
       'Published research contribution',
     ],
   },
+  {
+    title: 'Corrupt Watch',
+    acronym: 'CW',
+    stack: ['Blockchain', 'NLP', 'Computer Vision', 'AI'],
+    accent: '#5B4B8A',
+    description:
+      'AI–Blockchain framework for transparent civic grievance redressal: citizens file complaints with evidence, AI classifies and validates them, and blockchain keeps immutable, timestamped records so cases can’t be quietly altered or buried.',
+    details: [
+      'NLP + Computer Vision to classify grievances and verify multimedia evidence',
+      'Blockchain ledger for decentralized, tamper-proof complaint tracking',
+      'Multilingual UI, outlier detection for suspicious activity, whistleblower privacy',
+      'Published in IEEE Xplore — transparent governance / smart-city civic tech',
+    ],
+  },
 ]
 
 export const education = {
@@ -142,8 +167,9 @@ export const publications = [
     type: 'Peer-reviewed',
   },
   {
-    title: 'Corrupt Watch: AI & Blockchain Integrated City',
-    venue: 'IEEE International Conference, Ghousia College of Engineering, Ramanagara',
+    title:
+      'Corrupt Watch: An AI–Blockchain Integrated Framework for Transparent Civic Grievance Redressal',
+    venue: 'IEEE International Conference, Ghousia College of Engineering, Ramanagara · IEEE Xplore',
     type: 'Peer-reviewed',
   },
 ]
