@@ -3,12 +3,6 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { projects } from '../data/resume'
 import { Reveal } from './Reveal'
 
-const meta = [
-  { status: 'Production', focus: 'Semiconductor · ATE' },
-  { status: 'Privacy-first', focus: 'Local LLM · RAG' },
-  { status: 'Published', focus: 'ICAIH 2025 · Research' },
-]
-
 type Props = {
   /** Vertical stack for popup windows; rail for the main page */
   layout?: 'rail' | 'stack'
@@ -21,7 +15,7 @@ export function Projects({ layout = 'rail' }: Props) {
     target: railRef,
     offset: ['start end', 'end start'],
   })
-  const x = useTransform(scrollYProgress, [0.05, 0.95], ['4%', '-35%'])
+  const x = useTransform(scrollYProgress, [0.05, 0.95], ['4%', '-48%'])
   const isStack = layout === 'stack'
 
   return (
@@ -30,7 +24,8 @@ export function Projects({ layout = 'rail' }: Props) {
         <div className="section-label">Fig. 04 — Selected work</div>
         <h2 className="section-title">Systems that diagnose, reason & detect.</h2>
         <p className="section-lead">
-          Full-stack diagnostic tooling, privacy-first local agents, and research-grade deepfake detection.
+          Full-stack diagnostic tooling, privacy-first local agents, deepfake research, and AI–blockchain civic
+          grievance systems.
         </p>
       </Reveal>
 
@@ -55,10 +50,10 @@ export function Projects({ layout = 'rail' }: Props) {
                 <div className="project-grid-lines" />
                 <div className="project-visual-top">
                   <span className="project-index">0{i + 1}</span>
-                  <span className="project-status">{meta[i]?.status}</span>
+                  <span className="project-status">{p.status}</span>
                 </div>
                 <div className="project-mark">{p.acronym}</div>
-                <div className="project-focus">{meta[i]?.focus}</div>
+                <div className="project-focus">{p.focus}</div>
               </div>
 
               <div className="project-body">

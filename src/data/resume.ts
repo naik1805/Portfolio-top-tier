@@ -99,6 +99,8 @@ export const projects = [
   {
     title: 'Scan Chain Diagnosis Agent',
     acronym: 'SCDA',
+    status: 'Production',
+    focus: 'Semiconductor · ATE',
     stack: ['FastAPI', 'Next.js/React', 'scikit-learn', 'Docker'],
     accent: '#C23B22',
     description:
@@ -113,6 +115,8 @@ export const projects = [
   {
     title: 'Offline Personal AI Assistant',
     acronym: 'OPAA',
+    status: 'Privacy-first',
+    focus: 'Local LLM · RAG',
     stack: ['Ollama', 'FAISS', 'LangChain', 'RAG'],
     accent: '#1A5F4A',
     description:
@@ -127,6 +131,8 @@ export const projects = [
   {
     title: 'Deepfake Detection System',
     acronym: 'DFS',
+    status: 'Published',
+    focus: 'ICAIH 2025 · Research',
     stack: ['CNN + RNN', 'TensorFlow', 'OpenCV'],
     accent: '#2F3B4A',
     description:
@@ -141,6 +147,8 @@ export const projects = [
   {
     title: 'Corrupt Watch',
     acronym: 'CW',
+    status: 'Published',
+    focus: 'IEEE · Blockchain Civic',
     stack: ['Blockchain', 'NLP', 'Computer Vision', 'AI'],
     accent: '#5B4B8A',
     description:
