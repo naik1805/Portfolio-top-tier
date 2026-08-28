@@ -9,7 +9,6 @@ export function Experience() {
   return (
     <section className="section" id="experience">
       <Reveal>
-        <div className="section-label">Fig. 03 — Experience</div>
         <h2 className="section-title">Shipping AI into production systems.</h2>
         <p className="section-lead">
           Internships focused on diagnostic engines, recommendation systems, and real-time data pipelines.

@@ -22,9 +22,6 @@ export function Contact() {
   return (
     <section className="section contact-section" id="contact">
       <Reveal>
-        <div className="section-label" style={{ justifyContent: 'center' }}>
-          Fig. 06 — Connect
-        </div>
         <h2 className="section-title">Let&apos;s build something that ships.</h2>
         <p className="section-lead">
           Open to AI software, ML engineering, and data-driven backend roles where systems meet intelligence.

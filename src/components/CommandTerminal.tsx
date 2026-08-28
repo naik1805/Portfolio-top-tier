@@ -130,7 +130,7 @@ export function CommandTerminal({ open, onClose, onOpen }: Props) {
               />
             </label>
             <p className="terminal-hint">
-              Start typing — or pick a prompt. Press <kbd>/</kbd> anytime to reopen.
+              Type a command or navigate with keys. Press <kbd>/</kbd> anytime to reopen.
             </p>
             <ul className="terminal-list">
               {filtered.map((c, i) => (

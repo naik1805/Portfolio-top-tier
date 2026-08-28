@@ -5,7 +5,6 @@ export function Research() {
   return (
     <section className="section" id="research">
       <Reveal>
-        <div className="section-label">Fig. 05 — Research & credentials</div>
         <h2 className="section-title">Published. Awarded. Building next.</h2>
         <p className="section-lead">
           Peer-reviewed work in deepfake detection and AI-blockchain civic systems, plus hands-on wins.

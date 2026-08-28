@@ -265,10 +265,9 @@ export function Skills() {
   return (
     <section className="section" id="skills">
       <Reveal>
-        <div className="section-label">Fig. 02 — Capabilities</div>
         <h2 className="section-title">A stack built for agents & APIs.</h2>
         <p className="section-lead">
-          From FastAPI microservices to RAG pipelines and semiconductor diagnostics — depth where it counts.
+          From FastAPI microservices to RAG pipelines and semiconductor diagnostics: engineered for production.
         </p>
       </Reveal>
 

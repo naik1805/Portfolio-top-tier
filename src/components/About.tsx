@@ -27,8 +27,7 @@ export function About() {
   return (
     <section className="section" id="about">
       <Reveal>
-        <div className="section-label">Fig. 01 — Profile</div>
-        <h2 className="section-title">Engineer at the edge of AI & silicon.</h2>
+        <h2 className="section-title">Engineer at the intersection of AI & silicon.</h2>
         <p className="section-lead">
           Dual-published researcher shipping production diagnostics, agent pipelines, and backend systems.
         </p>
@@ -38,7 +37,7 @@ export function About() {
         <Reveal className="about-text" delay={0.1}>
           <p>{profile.summary}</p>
           <p>
-            Currently at Verileumen Labs building AI agents for semiconductor ATE workflows — from
+            Currently at Verileumen Labs building AI agents for semiconductor ATE workflows: from
             scan-chain fault localization to confidence-scored root-cause prediction served over FastAPI.
           </p>
         </Reveal>

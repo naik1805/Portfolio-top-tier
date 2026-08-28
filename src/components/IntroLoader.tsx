@@ -8,7 +8,7 @@ type Props = {
 export function IntroLoader({ onDone }: Props) {
   const [show, setShow] = useState(true)
   const [step, setStep] = useState(0)
-  const lines = ['LOADING', 'PLS', 'WAIT']
+  const lines = ['MOHITH S', 'AI SYSTEMS', 'INITIALIZING']
 
   useEffect(() => {
     const t1 = setTimeout(() => setStep(1), 450)

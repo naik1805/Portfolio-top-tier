@@ -21,10 +21,9 @@ export function Projects({ layout = 'rail' }: Props) {
   return (
     <section className={`section projects-section${isStack ? ' is-stack' : ''}`} id={isStack ? undefined : 'projects'}>
       <Reveal>
-        <div className="section-label">Fig. 04 — Selected work</div>
         <h2 className="section-title">Systems that diagnose, reason & detect.</h2>
         <p className="section-lead">
-          Full-stack diagnostic tooling, privacy-first local agents, deepfake research, and AI–blockchain civic
+          Full-stack diagnostic tooling, privacy-first local agents, deepfake research, and AI-blockchain civic
           grievance systems.
         </p>
       </Reveal>

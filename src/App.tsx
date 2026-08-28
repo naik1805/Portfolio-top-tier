@@ -16,12 +16,12 @@ import { SmoothScroll } from './components/SmoothScroll'
 import type { WindowId } from './types'
 
 const windows: Record<WindowId, { title: string; code: string }> = {
-  about: { title: 'About', code: 'FIG. 01' },
-  skills: { title: 'Skills', code: 'FIG. 02' },
-  experience: { title: 'Experience', code: 'FIG. 03' },
-  projects: { title: 'Projects', code: 'FIG. 04' },
-  research: { title: 'Research', code: 'FIG. 05' },
-  contact: { title: 'Contact', code: 'FIG. 06' },
+  about: { title: 'About', code: 'SYS.PROFILE' },
+  skills: { title: 'Skills', code: 'SYS.STACK' },
+  experience: { title: 'Experience', code: 'SYS.TIMELINE' },
+  projects: { title: 'Projects', code: 'SYS.PROJECTS' },
+  research: { title: 'Research', code: 'SYS.PAPERS' },
+  contact: { title: 'Contact', code: 'SYS.CONNECT' },
 }
 
 function WindowContent({ id }: { id: WindowId }) {

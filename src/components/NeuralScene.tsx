@@ -115,10 +115,10 @@ function Particles({ color }: { color: string }) {
 
 export function NeuralScene() {
   const { theme } = useTheme()
-  const ink = theme === 'dark' ? '#E8EEF4' : '#12161C'
-  const signal = theme === 'dark' ? '#E85D3D' : '#C23B22'
-  const oxide = theme === 'dark' ? '#3DBA8E' : '#1A5F4A'
-  const dust = theme === 'dark' ? '#9AA6B5' : '#5A6570'
+  const ink = theme === 'dark' ? '#F0F4F8' : '#0B0F15'
+  const signal = theme === 'dark' ? '#FF4D2E' : '#EA3815'
+  const oxide = theme === 'dark' ? '#22C55E' : '#15803D'
+  const dust = theme === 'dark' ? '#8C9BB0' : '#4B5565'
 
   return (
     <Canvas

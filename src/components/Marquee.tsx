@@ -24,7 +24,7 @@ export function Marquee({ items = defaultItems }: Props) {
         {row.map((item, i) => (
           <span key={`${item}-${i}`}>
             {item}
-            <em>✦</em>
+            <em>·</em>
           </span>
         ))}
       </div>

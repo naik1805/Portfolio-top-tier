@@ -1,7 +1,7 @@
 export const profile = {
   name: 'MOHITH S',
   brand: 'MOHITH S',
-  role: 'AI Software Engineer — ML · Data · Systems',
+  role: 'AI Software Engineer · ML · Data · Systems',
   tagline: 'Building AI agents, ML diagnostic engines, and backend systems that ship from data to production.',
   location: 'Bengaluru, India',
   phone: '+91-9880975146',
@@ -9,7 +9,7 @@ export const profile = {
   linkedin: 'https://linkedin.com/in/mohith-naik-121235234',
   github: 'https://github.com/naik1805',
   summary:
-    'B.E. graduate (AI & Data Science) with hands-on backend development experience building REST APIs (FastAPI, Node.js), ML-driven diagnostic engines, and AI agents integrated with automated test equipment (ATE) systems. Comfortable across the stack — Python backend services, SQL/NoSQL databases, and Next.js/React front ends — with a strong foundation in system design, data pipelines, and applied ML. Dual published researcher (ICAIH 2025 & IEEE).',
+    'B.E. graduate (AI & Data Science) with hands-on backend development experience building REST APIs (FastAPI, Node.js), ML-driven diagnostic engines, and AI agents integrated with automated test equipment (ATE) systems. Comfortable across the stack: Python backend services, SQL/NoSQL databases, and Next.js/React front ends, with a strong foundation in system design, data pipelines, and applied ML. Dual published researcher (ICAIH 2025 & IEEE).',
 }
 
 export const skills = {
@@ -67,9 +67,9 @@ export const experience = [
     focus: 'Semiconductor & AI',
     role: 'AI Engineer Intern',
     location: 'Bengaluru',
-    period: 'May 2026 – Present',
+    period: 'May 2026 - Present',
     current: true,
-    accent: '#C23B22',
+    accent: '#FF4D2E',
     tags: ['FastAPI', 'scikit-learn', 'Next.js', 'Docker', 'ATE', 'ML'],
     highlights: [
       'Building AI agents integrated with Automated Test Equipment (ATE) workflows, plus an AI-powered diagnostics dashboard used by semiconductor test engineers.',
@@ -83,9 +83,9 @@ export const experience = [
     focus: 'AI Products',
     role: 'AI Engineer Intern',
     location: 'Bengaluru',
-    period: 'Feb 2026 – Apr 2026',
+    period: 'Feb 2026 - Apr 2026',
     current: false,
-    accent: '#1A5F4A',
+    accent: '#FF4D2E',
     tags: ['NLP', 'Recommendation', 'Anomaly Detection', 'REST APIs', 'Pipelines'],
     highlights: [
       'Built an AI-driven product recommendation engine (collaborative filtering + NLP semantic search) and an ML-based anomaly detection module for fraudulent transactions.',
@@ -102,7 +102,7 @@ export const projects = [
     status: 'Production',
     focus: 'Semiconductor · ATE',
     stack: ['FastAPI', 'Next.js/React', 'scikit-learn', 'Docker'],
-    accent: '#C23B22',
+    accent: '#FF4D2E',
     description:
       'Full-stack diagnostic tool: Python engine analyzes chip scan-test fail logs to detect chain/cell failures, classify shift vs. capture issues, and predict root cause with ML.',
     details: [
@@ -118,13 +118,13 @@ export const projects = [
     status: 'Privacy-first',
     focus: 'Local LLM · RAG',
     stack: ['Ollama', 'FAISS', 'LangChain', 'RAG'],
-    accent: '#1A5F4A',
+    accent: '#FF4D2E',
     description:
       'Fully offline, privacy-first AI assistant powered by quantized LLMs (LLaMA, Mistral) via Ollama, with a RAG pipeline for document-grounded responses.',
     details: [
       'Whisper STT + Piper TTS voice interface',
       '<2s response latency via 4-bit GGUF quantization',
-      '3–5x speed improvement over baseline',
+      '3-5x speed improvement over baseline',
       'Local RAG with FAISS + LangChain',
     ],
   },
@@ -134,7 +134,7 @@ export const projects = [
     status: 'Published',
     focus: 'ICAIH 2025 · Research',
     stack: ['CNN + RNN', 'TensorFlow', 'OpenCV'],
-    accent: '#2F3B4A',
+    accent: '#FF4D2E',
     description:
       'End-to-end deepfake detection pipeline using CNNs + RNNs, optimized for near-real-time inference on benchmark datasets.',
     details: [
@@ -150,22 +150,22 @@ export const projects = [
     status: 'Published',
     focus: 'IEEE · Blockchain Civic',
     stack: ['Blockchain', 'NLP', 'Computer Vision', 'AI'],
-    accent: '#5B4B8A',
+    accent: '#FF4D2E',
     description:
-      'AI–Blockchain framework for transparent civic grievance redressal: citizens file complaints with evidence, AI classifies and validates them, and blockchain keeps immutable, timestamped records so cases can’t be quietly altered or buried.',
+      'AI-Blockchain framework for transparent civic grievance redressal: citizens file complaints with evidence, AI classifies and validates them, and blockchain keeps immutable, timestamped records so cases cannot be quietly altered or buried.',
     details: [
       'NLP + Computer Vision to classify grievances and verify multimedia evidence',
       'Blockchain ledger for decentralized, tamper-proof complaint tracking',
       'Multilingual UI, outlier detection for suspicious activity, whistleblower privacy',
-      'Published in IEEE Xplore — transparent governance / smart-city civic tech',
+      'Published in IEEE Xplore: transparent governance / smart-city civic tech',
     ],
   },
 ]
 
 export const education = {
-  degree: 'B.E. – Artificial Intelligence & Data Science',
+  degree: 'B.E. in Artificial Intelligence & Data Science',
   school: 'BGSCET (VTU), Bengaluru',
-  period: '2022 – 2026',
+  period: '2022 - 2026',
 }
 
 export const publications = [
@@ -176,13 +176,13 @@ export const publications = [
   },
   {
     title:
-      'Corrupt Watch: An AI–Blockchain Integrated Framework for Transparent Civic Grievance Redressal',
+      'Corrupt Watch: An AI-Blockchain Integrated Framework for Transparent Civic Grievance Redressal',
     venue: 'IEEE International Conference, Ghousia College of Engineering, Ramanagara · IEEE Xplore',
     type: 'Peer-reviewed',
   },
 ]
 
 export const achievements = [
-  '1st Prize — FPV Drone Project, BGS College Techno-Cultural Fest (30+ teams)',
-  '4+ Hackathon Participant — AI, ML & civic tech',
+  '1st Prize · FPV Drone Project, BGS College Techno-Cultural Fest (30+ teams)',
+  '4+ Hackathon Participant · AI, ML & civic tech',
 ]
