@@ -1,17 +1,26 @@
-import { useState } from 'react'
+import { useState, type MouseEvent } from 'react'
 import { motion } from 'framer-motion'
+import { Building2, Calendar, MapPin } from 'lucide-react'
 import { experience } from '../data/resume'
 import { Reveal } from './Reveal'
 
 export function Experience() {
   const [hovered, setHovered] = useState<number | null>(null)
 
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget
+    const rect = card.getBoundingClientRect()
+    card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`)
+    card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`)
+  }
+
   return (
     <section className="section" id="experience">
       <Reveal>
+        <span className="section-label">PRODUCTION HISTORY</span>
         <h2 className="section-title">Shipping AI into production systems.</h2>
         <p className="section-lead">
-          Internships focused on diagnostic engines, recommendation systems, and real-time data pipelines.
+          Engineering roles focused on semiconductor diagnostic engines, autonomous agents, and real-time streaming data pipelines.
         </p>
       </Reveal>
 
@@ -23,7 +32,7 @@ export function Experience() {
               style={{ ['--exp-accent' as string]: job.accent }}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
-              whileHover={{ y: -4 }}
+              whileHover={{ y: -3 }}
               transition={{ type: 'spring', stiffness: 280, damping: 24 }}
             >
               <div className="timeline-rail">
@@ -32,22 +41,26 @@ export function Experience() {
                 </div>
               </div>
 
-              <div className="exp-card">
-                <div className="exp-card-glow" aria-hidden />
+              <div className="exp-card" onMouseMove={handleMouseMove}>
+                <div className="card-spotlight" aria-hidden />
 
                 <div className="exp-top">
                   <div className="exp-badges">
-                    {job.current && <span className="exp-live">Now live</span>}
+                    {job.current && <span className="exp-live">Active Engagement</span>}
                     <span className="exp-focus">{job.focus}</span>
                   </div>
-                  <span className="exp-period">{job.period}</span>
+                  <span className="exp-period">
+                    <Calendar size={12} className="inline-icon" /> {job.period}
+                  </span>
                 </div>
 
                 <div className="exp-header">
                   <h3 className="exp-role">{job.role}</h3>
                   <p className="exp-company">
+                    <Building2 size={14} className="inline-icon" />
                     <strong>{job.company}</strong>
                     <span className="exp-sep">·</span>
+                    <MapPin size={13} className="inline-icon" />
                     <span>{job.location}</span>
                   </p>
                 </div>

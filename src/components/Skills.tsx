@@ -23,43 +23,43 @@ const groups = [
   {
     id: 'backend',
     title: 'Backend & APIs',
-    accent: '#C23B22',
-    blurb: 'Production services & REST',
+    accent: '#FF4D2E',
+    blurb: 'Production services & REST APIs',
     items: skills.backend,
   },
   {
     id: 'languages',
     title: 'Languages',
-    accent: '#1A5F4A',
-    blurb: 'Primary & supporting',
+    accent: '#22C55E',
+    blurb: 'Primary & compiled systems',
     items: skills.languages,
   },
   {
     id: 'ml',
     title: 'ML / AI',
-    accent: '#2F3B4A',
-    blurb: 'Agents, RAG & models',
+    accent: '#FF4D2E',
+    blurb: 'Agents, RAG & vision models',
     items: skills.ml,
   },
   {
     id: 'databases',
     title: 'Databases',
-    accent: '#C23B22',
-    blurb: 'SQL & NoSQL',
+    accent: '#3B82F6',
+    blurb: 'Relational, document & vector stores',
     items: skills.databases,
   },
   {
     id: 'frontend',
     title: 'Frontend',
-    accent: '#1A5F4A',
-    blurb: 'Dashboards that ship',
+    accent: '#22C55E',
+    blurb: 'Interactive telemetry dashboards',
     items: skills.frontend,
   },
   {
     id: 'tools',
     title: 'Tools & Data',
-    accent: '#2F3B4A',
-    blurb: 'Pipelines & analytics',
+    accent: '#3B82F6',
+    blurb: 'Pipelines, testing & caching',
     items: skills.tools,
   },
 ]
@@ -72,11 +72,11 @@ function RadarChart({
   onHover: (i: number | null) => void
 }) {
   const { theme } = useTheme()
-  const signal = theme === 'dark' ? '#E85D3D' : '#C23B22'
-  const oxide = theme === 'dark' ? '#3DBA8E' : '#1A5F4A'
-  const ink = theme === 'dark' ? '#E8EEF4' : '#12161C'
-  const muted = theme === 'dark' ? '#9AA6B5' : '#7A858F'
-  const gridStroke = theme === 'dark' ? 'rgba(232,238,244,0.12)' : 'rgba(18,22,28,0.1)'
+  const signal = theme === 'dark' ? '#FF4D2E' : '#EA3815'
+  const oxide = theme === 'dark' ? '#22C55E' : '#15803D'
+  const ink = theme === 'dark' ? '#F0F4F8' : '#0B0F15'
+  const muted = theme === 'dark' ? '#8C9BB0' : '#4B5565'
+  const gridStroke = theme === 'dark' ? 'rgba(240,244,248,0.1)' : 'rgba(11,15,21,0.08)'
   const size = 380
   const cx = size / 2
   const cy = size / 2
@@ -84,7 +84,7 @@ function RadarChart({
   const maxR = 110
   const n = skillRadar.length
   const ref = useRef<SVGSVGElement>(null)
-  const inView = useInView(ref, { once: true, amount: 0.4 })
+  const inView = useInView(ref, { once: true, amount: 0.35 })
 
   const angle = (i: number) => (Math.PI * 2 * i) / n - Math.PI / 2
 
@@ -121,16 +121,9 @@ function RadarChart({
       <svg ref={ref} className="radar-wrap" viewBox={`0 0 ${size} ${size}`} aria-hidden>
         <defs>
           <radialGradient id="radarFill" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor={signal} stopOpacity="0.28" />
+            <stop offset="0%" stopColor={signal} stopOpacity="0.32" />
             <stop offset="100%" stopColor={signal} stopOpacity="0.04" />
           </radialGradient>
-          <filter id="nodeGlow">
-            <feGaussianBlur stdDeviation="1.2" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
         </defs>
 
         {grid.map((ring, ri) => (
@@ -153,7 +146,7 @@ function RadarChart({
               y1={cy}
               x2={p.x}
               y2={p.y}
-              stroke={hot ? `${signal}8c` : gridStroke}
+              stroke={hot ? `${signal}99` : gridStroke}
               strokeWidth={hot ? 1.5 : 1}
             />
           )
@@ -165,7 +158,7 @@ function RadarChart({
           fill="url(#radarFill)"
           stroke={signal}
           strokeWidth={2.5}
-          initial={{ opacity: 0, scale: 0.55 }}
+          initial={{ opacity: 0, scale: 0.6 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           style={{ transformOrigin: `${cx}px ${cy}px` }}
@@ -182,7 +175,7 @@ function RadarChart({
               style={{ cursor: 'pointer' }}
             >
               {hot && (
-                <circle cx={p.x} cy={p.y} r={14} fill={color} opacity={0.12} />
+                <circle cx={p.x} cy={p.y} r={14} fill={color} opacity={0.15} />
               )}
               <motion.circle
                 cx={p.x}
@@ -191,7 +184,7 @@ function RadarChart({
                 fill={color}
                 initial={{ scale: 0 }}
                 animate={inView ? { scale: 1 } : {}}
-                transition={{ delay: 0.35 + i * 0.08, type: 'spring', stiffness: 260 }}
+                transition={{ delay: 0.3 + i * 0.07, type: 'spring', stiffness: 280 }}
               />
             </g>
           )
@@ -229,7 +222,7 @@ function RadarChart({
               key={s.label}
               type="button"
               className={`radar-metric${activeIndex === i ? ' active' : ''}`}
-              style={{ opacity: hot ? 1 : 0.35 }}
+              style={{ opacity: hot ? 1 : 0.4 }}
               onMouseEnter={() => onHover(i)}
               onMouseLeave={() => onHover(null)}
               onFocus={() => onHover(i)}
@@ -247,7 +240,7 @@ function RadarChart({
                   }}
                   initial={{ width: 0 }}
                   animate={inView ? { width: `${s.value}%` } : {}}
-                  transition={{ delay: 0.2 + i * 0.07, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ delay: 0.2 + i * 0.06, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 />
               </div>
             </button>
@@ -265,9 +258,10 @@ export function Skills() {
   return (
     <section className="section" id="skills">
       <Reveal>
-        <h2 className="section-title">A stack built for agents & APIs.</h2>
+        <span className="section-label">TECHNICAL COMPETENCY MATRIX</span>
+        <h2 className="section-title">A stack engineered for AI & APIs.</h2>
         <p className="section-lead">
-          From FastAPI microservices to RAG pipelines and semiconductor diagnostics: engineered for production.
+          From FastAPI microservices to RAG pipelines, semiconductor diagnostics, and distributed systems.
         </p>
       </Reveal>
 
@@ -282,24 +276,39 @@ export function Skills() {
               type="button"
               className={`skill-filter-btn${!activeGroup ? ' active' : ''}`}
               onClick={() => setActiveGroup(null)}
+              style={{ position: 'relative' }}
             >
-              All
+              {!activeGroup && (
+                <motion.span
+                  layoutId="skillFilterPill"
+                  className="filter-pill-bg"
+                  transition={{ type: 'spring', stiffness: 380, damping: 28 }}
+                />
+              )}
+              <span className="filter-btn-text">All Skills</span>
             </button>
-            {groups.map((g) => (
-              <button
-                key={g.id}
-                type="button"
-                className={`skill-filter-btn${activeGroup === g.id ? ' active' : ''}`}
-                style={
-                  activeGroup === g.id
-                    ? { borderColor: g.accent, color: g.accent, background: `${g.accent}22` }
-                    : undefined
-                }
-                onClick={() => setActiveGroup((cur) => (cur === g.id ? null : g.id))}
-              >
-                {g.title}
-              </button>
-            ))}
+
+            {groups.map((g) => {
+              const isSelected = activeGroup === g.id
+              return (
+                <button
+                  key={g.id}
+                  type="button"
+                  className={`skill-filter-btn${isSelected ? ' active' : ''}`}
+                  onClick={() => setActiveGroup((cur) => (cur === g.id ? null : g.id))}
+                  style={{ position: 'relative' }}
+                >
+                  {isSelected && (
+                    <motion.span
+                      layoutId="skillFilterPill"
+                      className="filter-pill-bg"
+                      transition={{ type: 'spring', stiffness: 380, damping: 28 }}
+                    />
+                  )}
+                  <span className="filter-btn-text">{g.title}</span>
+                </button>
+              )
+            })}
           </div>
 
           <div className="skill-cards">
@@ -314,7 +323,7 @@ export function Skills() {
                     initial={{ opacity: 0, y: 18 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.96 }}
-                    transition={{ delay: 0.04 * gi, duration: 0.4 }}
+                    transition={{ delay: 0.04 * gi, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                     style={{ ['--skill-accent' as string]: g.accent }}
                   >
                     <header className="skill-card-head">
@@ -333,8 +342,8 @@ export function Skills() {
                             className={`skill-chip${isFeatured ? ' featured' : ''}`}
                             initial={{ opacity: 0, y: 8 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.03 * ii }}
-                            whileHover={{ y: -3, scale: 1.04 }}
+                            transition={{ delay: 0.02 * ii }}
+                            whileHover={{ y: -2, scale: 1.03 }}
                           >
                             {isFeatured && <span className="skill-chip-dot" />}
                             {item}

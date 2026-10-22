@@ -1,7 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowUpRight, LayoutGrid } from 'lucide-react'
-import type { WindowId } from '../types'
+import { ArrowDown, ArrowUpRight, Cpu, Sparkles } from 'lucide-react'
 import { profile } from '../data/resume'
 import { KineticLine } from './KineticLine'
 import { MagneticButton } from './MagneticButton'
@@ -10,18 +9,12 @@ const NeuralScene = lazy(() =>
   import('./NeuralScene').then((m) => ({ default: m.NeuralScene })),
 )
 
-const brandLetters = profile.brand.split('')
-
-type Props = {
-  onOpen: (id: WindowId) => void
-}
-
-export function Hero({ onOpen }: Props) {
+export function Hero() {
   const [hudTime, setHudTime] = useState('--:--:--')
   const { scrollY } = useScroll()
-  const visualY = useTransform(scrollY, [0, 500], [0, 90])
-  const copyY = useTransform(scrollY, [0, 500], [0, -40])
-  const opacity = useTransform(scrollY, [0, 420], [1, 0.35])
+  const visualY = useTransform(scrollY, [0, 600], [0, 80])
+  const copyY = useTransform(scrollY, [0, 600], [0, -30])
+  const opacity = useTransform(scrollY, [0, 480], [1, 0.4])
 
   useEffect(() => {
     const tick = () => {
@@ -40,85 +33,68 @@ export function Hero({ onOpen }: Props) {
     return () => clearInterval(id)
   }, [])
 
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <section className="hero" id="top">
       <motion.div className="hero-copy" style={{ y: copyY, opacity }}>
         <motion.div
           className="hero-status"
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
         >
           <span className="hero-status-dot" />
-          Available for AI · ML · software roles
+          <span>Available for AI · ML · Systems Engineering</span>
         </motion.div>
 
-        <h1 className="hero-brand" aria-label={profile.name}>
-          {brandLetters.map((letter, i) => {
-            const isLast = i === brandLetters.length - 1
-            return (
-              <motion.span
-                key={`${letter}-${i}`}
-                className={isLast ? 'accent' : undefined}
-                initial={{ opacity: 0, y: 80, rotateX: 50 }}
-                animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{
-                  duration: 0.85,
-                  delay: 0.25 + 0.06 * i,
-                  ease: [0.76, 0, 0.24, 1],
-                }}
-                style={{
-                  display: 'inline-block',
-                  transformOrigin: 'bottom',
-                  width: letter === ' ' ? '0.35em' : undefined,
-                }}
-              >
-                {letter === ' ' ? '\u00A0' : letter}
-              </motion.span>
-            )
-          })}
-        </h1>
+        <motion.div
+          className="hero-headline-wrap"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <h1 className="hero-brand" aria-label={profile.name}>
+            MOHITH <span className="hero-accent-mark">S</span>
+          </h1>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.85, duration: 0.6 }}
+          transition={{ delay: 0.35, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <KineticLine />
         </motion.div>
 
         <motion.p
           className="hero-role"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.6 }}
+          transition={{ delay: 0.48, duration: 0.6 }}
         >
-          {profile.role}
+          Dual-published AI Systems Engineer specialized in semiconductor ATE diagnostics, autonomous agents, and high-throughput Python backends.
         </motion.p>
 
         <motion.div
           className="hero-actions"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.15, duration: 0.6 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
         >
           <MagneticButton
             className="btn-primary"
-            onClick={() => {
-              onOpen('projects')
-              document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
-            }}
+            onClick={() => scrollTo('projects')}
           >
-            View projects <LayoutGrid size={16} />
+            Explore Systems <Cpu size={16} />
           </MagneticButton>
           <MagneticButton
             className="btn-ghost"
-            onClick={() => {
-              onOpen('contact')
-              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-            }}
+            onClick={() => scrollTo('contact')}
           >
-            Contact <ArrowUpRight size={16} />
+            Get in touch <ArrowUpRight size={16} />
           </MagneticButton>
         </motion.div>
 
@@ -126,19 +102,24 @@ export function Hero({ onOpen }: Props) {
           className="hero-meta"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.3, duration: 0.6 }}
+          transition={{ delay: 0.75, duration: 0.6 }}
         >
-          <span>
+          <span className="hero-meta-item">
             <strong>LOC</strong> {profile.location}
           </span>
-          <span>
-            <strong>PUB</strong> ICAIH · IEEE
+          <span className="hero-meta-item">
+            <strong>PUB</strong> ICAIH 2025 · IEEE Xplore
           </span>
-          <a href={profile.github} target="_blank" rel="noreferrer">
+          <a
+            className="hero-meta-item"
+            href={profile.github}
+            target="_blank"
+            rel="noreferrer"
+          >
             <strong>GH</strong> naik1805
           </a>
           <span className="hero-cmd-tip">
-            Press <kbd>/</kbd> for terminal
+            <Sparkles size={12} className="tip-sparkle" /> Press <kbd>/</kbd> for command HUD
           </span>
         </motion.div>
       </motion.div>
@@ -146,19 +127,33 @@ export function Hero({ onOpen }: Props) {
       <motion.div
         className="hero-visual"
         style={{ y: visualY }}
-        initial={{ opacity: 0, scale: 0.97 }}
+        initial={{ opacity: 0, scale: 0.94 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.45, duration: 1.1, ease: [0.76, 0, 0.24, 1] }}
+        transition={{ delay: 0.3, duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="hero-visual-stage">
-          <Suspense fallback={null}>
+          <Suspense fallback={<div className="neural-fallback" />}>
             <NeuralScene />
           </Suspense>
           <div className="hero-visual-caption">
-            <span>Diagnostic graph</span>
-            <span>{hudTime}</span>
+            <div className="caption-live-indicator">
+              <span className="caption-pulse" />
+              <span>DIAGNOSTIC GRAPH</span>
+            </div>
+            <span className="caption-time">{hudTime} IST</span>
           </div>
         </div>
+      </motion.div>
+
+      <motion.div
+        className="hero-scroll-cue"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.1, duration: 0.8 }}
+        onClick={() => scrollTo('about')}
+      >
+        <span>SCROLL TO EXPLORE</span>
+        <ArrowDown size={14} className="scroll-arrow" />
       </motion.div>
     </section>
   )

@@ -1,12 +1,10 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import type { WindowId } from '../types'
 import { useTheme } from '../theme'
 
 type Props = {
   open: boolean
   onClose: () => void
-  onOpen: (id: WindowId) => void
 }
 
 const commands: { cmd: string; hint: string; action: string }[] = [
@@ -24,7 +22,7 @@ const commands: { cmd: string; hint: string; action: string }[] = [
   { cmd: 'close', hint: 'Close terminal', action: 'close' },
 ]
 
-export function CommandTerminal({ open, onClose, onOpen }: Props) {
+export function CommandTerminal({ open, onClose }: Props) {
   const { toggleTheme, setTheme } = useTheme()
   const [query, setQuery] = useState('')
   const [active, setActive] = useState(0)
@@ -78,8 +76,10 @@ export function CommandTerminal({ open, onClose, onOpen }: Props) {
       onClose()
       return
     }
-    onOpen(action as WindowId)
-    document.getElementById(action)?.scrollIntoView({ behavior: 'smooth' })
+    const el = document.getElementById(action)
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' })
+    }
     onClose()
   }
 

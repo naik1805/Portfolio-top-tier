@@ -9,12 +9,12 @@ function NeuralNetwork({ ink, signal, oxide }: { ink: string; signal: string; ox
   const nodes = useMemo(() => {
     const pts: THREE.Vector3[] = []
     const layers = [4, 7, 7, 4]
-    const spacing = 1.4
+    const spacing = 1.35
     layers.forEach((count, li) => {
       const x = (li - (layers.length - 1) / 2) * spacing
       for (let i = 0; i < count; i++) {
         const y = (i - (count - 1) / 2) * 0.58
-        const z = Math.sin(i * 1.7 + li) * 0.28
+        const z = Math.sin(i * 1.7 + li) * 0.32
         pts.push(new THREE.Vector3(x, y, z))
       }
     })
@@ -40,32 +40,37 @@ function NeuralNetwork({ ink, signal, oxide }: { ink: string; signal: string; ox
     return lines
   }, [nodes])
 
-  useFrame((state) => {
+  useFrame((state, delta) => {
     if (!group.current) return
     const t = state.clock.elapsedTime
-    group.current.rotation.y = Math.sin(t * 0.18) * 0.32
-    group.current.rotation.x = Math.cos(t * 0.14) * 0.1
+    // Natural subtle rotation combined with mouse pointer parallax
+    const targetY = Math.sin(t * 0.16) * 0.22 + state.pointer.x * 0.38
+    const targetX = Math.cos(t * 0.12) * 0.08 - state.pointer.y * 0.28
+    group.current.rotation.y = THREE.MathUtils.damp(group.current.rotation.y, targetY, 3.5, delta)
+    group.current.rotation.x = THREE.MathUtils.damp(group.current.rotation.x, targetX, 3.5, delta)
   })
 
   return (
-    <group ref={group} scale={1.2}>
+    <group ref={group} scale={1.22}>
       {edges.map((pair, i) => (
         <Line
           key={`e-${i}`}
           points={pair}
           color={ink}
           transparent
-          opacity={0.12 + (i % 5) * 0.015}
+          opacity={0.14 + (i % 5) * 0.02}
           lineWidth={1}
         />
       ))}
       {nodes.map((p, i) => (
-        <Float key={`n-${i}`} speed={1 + (i % 4) * 0.15} floatIntensity={0.18} rotationIntensity={0.08}>
-          <Sphere args={[0.065 + (i % 3) * 0.012, 16, 16]} position={p}>
+        <Float key={`n-${i}`} speed={1 + (i % 4) * 0.15} floatIntensity={0.16} rotationIntensity={0.06}>
+          <Sphere args={[0.068 + (i % 3) * 0.012, 16, 16]} position={p}>
             <meshStandardMaterial
               color={i % 7 === 0 ? signal : i % 3 === 0 ? oxide : ink}
-              roughness={0.7}
-              metalness={0.05}
+              emissive={i % 7 === 0 ? signal : i % 3 === 0 ? oxide : '#000000'}
+              emissiveIntensity={i % 7 === 0 ? 0.35 : i % 3 === 0 ? 0.25 : 0}
+              roughness={0.6}
+              metalness={0.1}
             />
           </Sphere>
         </Float>
@@ -80,9 +85,9 @@ function OrbitRing({ radius, speed, color }: { radius: number; speed: number; co
     if (ref.current) ref.current.rotation.z += dt * speed
   })
   return (
-    <mesh ref={ref} rotation={[Math.PI / 2.5, 0.15, 0]}>
-      <torusGeometry args={[radius, 0.004, 12, 96]} />
-      <meshBasicMaterial color={color} transparent opacity={0.14} />
+    <mesh ref={ref} rotation={[Math.PI / 2.4, 0.16, 0]}>
+      <torusGeometry args={[radius, 0.0035, 12, 96]} />
+      <meshBasicMaterial color={color} transparent opacity={0.15} />
     </mesh>
   )
 }
@@ -91,24 +96,24 @@ function Particles({ color }: { color: string }) {
   const ref = useRef<THREE.Points>(null)
   const geometry = useMemo(() => {
     const g = new THREE.BufferGeometry()
-    const arr = new Float32Array(140 * 3)
-    for (let i = 0; i < 140; i++) {
-      arr[i * 3] = (Math.random() - 0.5) * 9
-      arr[i * 3 + 1] = (Math.random() - 0.5) * 7
-      arr[i * 3 + 2] = (Math.random() - 0.5) * 5
+    const arr = new Float32Array(160 * 3)
+    for (let i = 0; i < 160; i++) {
+      arr[i * 3] = (Math.random() - 0.5) * 10
+      arr[i * 3 + 1] = (Math.random() - 0.5) * 8
+      arr[i * 3 + 2] = (Math.random() - 0.5) * 6
     }
     g.setAttribute('position', new THREE.BufferAttribute(arr, 3))
     return g
   }, [])
 
-  useFrame((state) => {
+  useFrame((_, delta) => {
     if (!ref.current) return
-    ref.current.rotation.y = state.clock.elapsedTime * 0.015
+    ref.current.rotation.y += delta * 0.02
   })
 
   return (
     <points ref={ref} geometry={geometry}>
-      <pointsMaterial size={0.018} color={color} transparent opacity={0.28} sizeAttenuation />
+      <pointsMaterial size={0.018} color={color} transparent opacity={0.32} sizeAttenuation />
     </points>
   )
 }
@@ -123,18 +128,18 @@ export function NeuralScene() {
   return (
     <Canvas
       key={theme}
-      camera={{ position: [0, 0, 7.4], fov: 40 }}
-      dpr={[1, 1.6]}
+      camera={{ position: [0, 0, 7.2], fov: 40 }}
+      dpr={[1, 1.8]}
       gl={{ antialias: true, alpha: true, premultipliedAlpha: false }}
       style={{ width: '100%', height: '100%', background: 'transparent' }}
     >
-      <ambientLight intensity={theme === 'dark' ? 0.7 : 0.95} />
-      <directionalLight position={[3, 4, 5]} intensity={theme === 'dark' ? 0.7 : 0.55} color="#ffffff" />
-      <directionalLight position={[-4, -1, 2]} intensity={0.25} color={oxide} />
+      <ambientLight intensity={theme === 'dark' ? 0.75 : 0.95} />
+      <directionalLight position={[3, 4, 5]} intensity={theme === 'dark' ? 0.8 : 0.65} color="#ffffff" />
+      <directionalLight position={[-4, -1, 2]} intensity={0.35} color={oxide} />
       <Particles color={dust} />
-      <OrbitRing radius={3.1} speed={0.06} color={ink} />
-      <OrbitRing radius={3.55} speed={-0.04} color={signal} />
-      <OrbitRing radius={4} speed={0.03} color={oxide} />
+      <OrbitRing radius={3.1} speed={0.05} color={ink} />
+      <OrbitRing radius={3.6} speed={-0.035} color={signal} />
+      <OrbitRing radius={4.1} speed={0.025} color={oxide} />
       <NeuralNetwork ink={ink} signal={signal} oxide={oxide} />
     </Canvas>
   )

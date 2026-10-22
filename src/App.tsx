@@ -1,10 +1,8 @@
-import { useCallback, useEffect, useState } from 'react'
-import { AnimatePresence } from 'framer-motion'
+import { useEffect, useState } from 'react'
 import { About } from './components/About'
 import { CommandTerminal } from './components/CommandTerminal'
 import { Contact } from './components/Contact'
 import { Experience } from './components/Experience'
-import { FloatingWindow } from './components/FloatingWindow'
 import { Hero } from './components/Hero'
 import { IntroLoader } from './components/IntroLoader'
 import { Marquee } from './components/Marquee'
@@ -13,52 +11,21 @@ import { Projects } from './components/Projects'
 import { Research } from './components/Research'
 import { Skills } from './components/Skills'
 import { SmoothScroll } from './components/SmoothScroll'
-import type { WindowId } from './types'
-
-const windows: Record<WindowId, { title: string; code: string }> = {
-  about: { title: 'About', code: 'SYS.PROFILE' },
-  skills: { title: 'Skills', code: 'SYS.STACK' },
-  experience: { title: 'Experience', code: 'SYS.TIMELINE' },
-  projects: { title: 'Projects', code: 'SYS.PROJECTS' },
-  research: { title: 'Research', code: 'SYS.PAPERS' },
-  contact: { title: 'Contact', code: 'SYS.CONNECT' },
-}
-
-function WindowContent({ id }: { id: WindowId }) {
-  switch (id) {
-    case 'about':
-      return <About />
-    case 'skills':
-      return <Skills />
-    case 'experience':
-      return <Experience />
-    case 'projects':
-      return <Projects layout="stack" />
-    case 'research':
-      return <Research />
-    case 'contact':
-      return <Contact />
-  }
-}
 
 export default function App() {
-  const [active, setActive] = useState<WindowId | null>(null)
   const [terminalOpen, setTerminalOpen] = useState(false)
   const [booting, setBooting] = useState(true)
   const [ready, setReady] = useState(false)
 
-  const openWindow = useCallback((id: WindowId) => setActive(id), [])
-  const closeWindow = useCallback(() => setActive(null), [])
-
   useEffect(() => {
-    if (active || terminalOpen) {
+    if (terminalOpen) {
       const prev = document.body.style.overflow
       document.body.style.overflow = 'hidden'
       return () => {
         document.body.style.overflow = prev
       }
     }
-  }, [active, terminalOpen])
+  }, [terminalOpen])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -68,17 +35,16 @@ export default function App() {
         e.preventDefault()
         setTerminalOpen(true)
       }
-      if (e.key === 'Escape') {
-        if (terminalOpen) setTerminalOpen(false)
-        else if (active) setActive(null)
+      if (e.key === 'Escape' && terminalOpen) {
+        setTerminalOpen(false)
       }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [active, terminalOpen])
+  }, [terminalOpen])
 
   return (
-    <SmoothScroll paused={Boolean(active) || terminalOpen || booting}>
+    <SmoothScroll paused={terminalOpen || booting}>
       <IntroLoader
         onDone={() => {
           setBooting(false)
@@ -90,16 +56,10 @@ export default function App() {
       <div className="aurora" aria-hidden />
       <div className="grid-bg" aria-hidden />
 
-      <div
-        className={`app-shell${active ? ' window-open' : ''}${ready ? ' is-ready' : ''}`}
-      >
-        <Nav
-          active={active}
-          onOpen={openWindow}
-          onOpenTerminal={() => setTerminalOpen(true)}
-        />
+      <div className={`app-shell${ready ? ' is-ready' : ''}`}>
+        <Nav onOpenTerminal={() => setTerminalOpen(true)} />
         <main>
-          <Hero onOpen={openWindow} />
+          <Hero />
           <Marquee />
           <About />
           <Skills />
@@ -110,24 +70,9 @@ export default function App() {
         </main>
       </div>
 
-      <AnimatePresence>
-        {active && (
-          <FloatingWindow
-            key={active}
-            id={active}
-            title={windows[active].title}
-            code={windows[active].code}
-            onClose={closeWindow}
-          >
-            <WindowContent id={active} />
-          </FloatingWindow>
-        )}
-      </AnimatePresence>
-
       <CommandTerminal
         open={terminalOpen}
         onClose={() => setTerminalOpen(false)}
-        onOpen={openWindow}
       />
     </SmoothScroll>
   )
