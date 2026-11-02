@@ -7,6 +7,9 @@ services:
     buildCommand: npm install && npm run build
     staticPublishPath: dist
     autoDeployTrigger: commit
+    envVars:
+      - key: NODE_VERSION
+        value: 22.12.0
     routes:
       - type: rewrite
         source: /*
