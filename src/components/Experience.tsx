@@ -2,6 +2,7 @@ import { useState, type MouseEvent } from 'react'
 import { motion } from 'framer-motion'
 import { Building2, Calendar, MapPin } from 'lucide-react'
 import { experience } from '../data/resume'
+import { CornerTicks } from './CornerTicks'
 import { Reveal } from './Reveal'
 
 export function Experience() {
@@ -41,7 +42,8 @@ export function Experience() {
                 </div>
               </div>
 
-              <div className="exp-card" onMouseMove={handleMouseMove}>
+              <div className="exp-card" onMouseMove={handleMouseMove} style={{ position: 'relative' }}>
+                <CornerTicks size={8} />
                 <div className="card-spotlight" aria-hidden />
 
                 <div className="exp-top">

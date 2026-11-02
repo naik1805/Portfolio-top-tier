@@ -1,5 +1,6 @@
 import { Award, BookOpen, GraduationCap, Trophy } from 'lucide-react'
 import { achievements, education, publications } from '../data/resume'
+import { CornerTicks } from './CornerTicks'
 import { Reveal } from './Reveal'
 
 export function Research() {
@@ -16,7 +17,8 @@ export function Research() {
       <Reveal delay={0.1}>
         <div className="pub-list">
           {publications.map((pub, i) => (
-            <article key={pub.title} className="pub-item">
+            <article key={pub.title} className="pub-item" style={{ position: 'relative' }}>
+              <CornerTicks size={8} />
               <span className="pub-index">0{i + 1}</span>
               <div className="pub-info">
                 <div className="pub-venue-badge">
@@ -36,7 +38,8 @@ export function Research() {
 
       <div className="edu-block">
         <Reveal delay={0.15}>
-          <div className="edu-card">
+          <div className="edu-card" style={{ position: 'relative' }}>
+            <CornerTicks size={8} />
             <div className="edu-card-head">
               <GraduationCap size={16} className="edu-icon" />
               <h3>Education</h3>
@@ -48,7 +51,8 @@ export function Research() {
         </Reveal>
 
         <Reveal delay={0.2}>
-          <div className="achieve-card">
+          <div className="achieve-card" style={{ position: 'relative' }}>
+            <CornerTicks size={8} />
             <div className="edu-card-head">
               <Trophy size={16} className="achieve-icon" />
               <h3>Honors & Competitions</h3>

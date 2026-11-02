@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Activity, ArrowUpRight, CheckCircle2, Cpu, Database, Eye, FileText, Lock, Play, Shield, Terminal } from 'lucide-react'
 import { projects } from '../data/resume'
 import type { Project } from '../types'
+import { CornerTicks } from './CornerTicks'
 import { ProjectBlueprintModal } from './ProjectBlueprintModal'
 import { Reveal } from './Reveal'
 
@@ -54,6 +55,7 @@ export function Projects() {
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
+          <CornerTicks size={10} />
           <div className="card-spotlight" aria-hidden />
           <div className="project-card-header">
             <div className="project-header-left">
@@ -161,6 +163,7 @@ export function Projects() {
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
+          <CornerTicks size={10} />
           <div className="card-spotlight" aria-hidden />
           <div className="project-card-header">
             <div className="project-header-left">
@@ -280,6 +283,7 @@ export function Projects() {
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
         >
+          <CornerTicks size={10} />
           <div className="card-spotlight" aria-hidden />
           <div className="project-card-header">
             <div className="project-header-left">
@@ -384,6 +388,7 @@ export function Projects() {
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
+          <CornerTicks size={10} />
           <div className="card-spotlight" aria-hidden />
           <div className="project-card-header">
             <div className="project-header-left">

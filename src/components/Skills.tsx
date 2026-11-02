@@ -1,6 +1,7 @@
 import { useMemo, useState, useRef } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { skillRadar, skills } from '../data/resume'
+import { CornerTicks } from './CornerTicks'
 import { Reveal } from './Reveal'
 import { useTheme } from '../theme'
 
@@ -116,7 +117,8 @@ function RadarChart({
   }
 
   return (
-    <div className="radar-panel">
+    <div className="radar-panel" style={{ position: 'relative' }}>
+      <CornerTicks size={10} />
       <div className="radar-glow" aria-hidden />
       <svg ref={ref} className="radar-wrap" viewBox={`0 0 ${size} ${size}`} aria-hidden>
         <defs>
@@ -324,8 +326,9 @@ export function Skills() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.96 }}
                     transition={{ delay: 0.04 * gi, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                    style={{ ['--skill-accent' as string]: g.accent }}
+                    style={{ ['--skill-accent' as string]: g.accent, position: 'relative' }}
                   >
+                    <CornerTicks size={8} />
                     <header className="skill-card-head">
                       <div>
                         <h3>{g.title}</h3>

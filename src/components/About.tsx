@@ -1,6 +1,7 @@
 import { useEffect, useRef, type MouseEvent } from 'react'
 import { useInView, useMotionValue, useSpring } from 'framer-motion'
 import { profile } from '../data/resume'
+import { CornerTicks } from './CornerTicks'
 import { Reveal } from './Reveal'
 
 function Counter({ value, suffix = '' }: { value: number; suffix?: string }) {
@@ -52,25 +53,29 @@ export function About() {
 
         <Reveal delay={0.2}>
           <div className="stat-grid">
-            <div className="stat-cell" onMouseMove={handleMouseMove}>
+            <div className="stat-cell" onMouseMove={handleMouseMove} style={{ position: 'relative' }}>
+              <CornerTicks size={8} />
               <div className="stat-value">
                 <Counter value={2} />
               </div>
               <div className="stat-label">Peer-reviewed publications (ICAIH & IEEE)</div>
             </div>
-            <div className="stat-cell" onMouseMove={handleMouseMove}>
+            <div className="stat-cell" onMouseMove={handleMouseMove} style={{ position: 'relative' }}>
+              <CornerTicks size={8} />
               <div className="stat-value">
                 <Counter value={40} suffix="%" />
               </div>
               <div className="stat-label">Processing latency cut on real-time pipelines</div>
             </div>
-            <div className="stat-cell" onMouseMove={handleMouseMove}>
+            <div className="stat-cell" onMouseMove={handleMouseMove} style={{ position: 'relative' }}>
+              <CornerTicks size={8} />
               <div className="stat-value">
                 <Counter value={12} />
               </div>
               <div className="stat-label">Production KPI diagnostics dashboard cards</div>
             </div>
-            <div className="stat-cell" onMouseMove={handleMouseMove}>
+            <div className="stat-cell" onMouseMove={handleMouseMove} style={{ position: 'relative' }}>
+              <CornerTicks size={8} />
               <div className="stat-value">
                 <Counter value={2} suffix="s" />
               </div>

@@ -1,51 +1,52 @@
-# DESIGN.md — Mohith S Portfolio Design System
+# DESIGN.md — Mohith S Portfolio Design System (Rivet Inspired)
 
-> Visual specification and token contract designed in alignment with VoltAgent/awesome-design-md, Taste Skill (Anti-Slop), and Impeccable standards.
+> Visual specification and token contract inspired by Rivet (`rivet.design`), designed in alignment with VoltAgent/awesome-design-md, Taste Skill (Anti-Slop), and Impeccable standards.
 
 ---
 
 ## 1. Visual Theme & Atmosphere
 
-- **Aesthetic**: Precision Instrument & Studio Engineering (Linear/Vercel-level high craft with scientific & systems depth).
-- **Mood**: Confident, restrained, architectural, tactile, and intelligent.
-- **Density**: 4/10 (Generous macro-spacing, high-density micro-data, scannable hierarchies).
-- **Variance**: 7/10 (Asymmetric split hero, dynamic polygon radar, bento & timeline layouts).
-- **Motion Intensity**: 6/10 (Spring physics, magnetic CTA pulls, interactive 3D WebGL neural scene, zero linear easing).
+- **Aesthetic**: Rivet-Inspired Industrial Design Studio & Developer Tooling.
+- **Mood**: Authoritative, tactile, precision-tooled, restrained, and intelligent.
+- **Density**: 5/10 (Architectural whitespace, high-density telemetry, scannable hierarchies).
+- **Variance**: 7/10 (Signature parallel directions workbench, split hero, dynamic radar chart, interactive dossiers).
+- **Motion Intensity**: 6/10 (Exponential deceleration `cubic-bezier(0.16, 1, 0.3, 1)`, interactive telemetry, zero linear or bounce easing).
+- **Drafting Marks**: Technical corner registration ticks (`+`, `┌ ┐ └ ┘`) on canvases and interactive frames.
 - **Theme Lock**: Cohesive light and dark modes with 100% token consistency across all components.
 
 ---
 
 ## 2. Color Palette & Roles
 
-### Dark Theme (Obsidian Lab — Default)
+### Light Theme (Rivet Studio Canvas)
 | Token | Value | Role |
 | :--- | :--- | :--- |
-| `--bg` | `#090C10` | Canvas base background |
-| `--bg-elevated` | `#121720` | Card & surface elevation 1 |
-| `--bg-panel` | `#18202C` | Modals, floating drawers, tooltips |
-| `--ink` | `#F0F4F8` | Primary display & heading text |
-| `--text-muted` | `#8C9BB0` | Body copy & description text |
-| `--text-dim` | `#5A687A` | Captions, timings, subtle metadata |
-| `--line` | `rgba(240, 244, 248, 0.08)` | Subtle card borders & dividers |
-| `--line-strong`| `rgba(240, 244, 248, 0.18)` | Hover borders & active outlines |
-| `--accent` | `#FF4D2E` | High-voltage international signal orange (Primary CTA & highlights) |
-| `--accent-dim` | `rgba(255, 77, 46, 0.12)` | Badge backgrounds & subtle glow tint |
-| `--accent-secondary` | `#22C55E` | Semantic live status indicator |
+| `--bg` | `#FAF7EE` | Signature Rivet warm drafting canvas |
+| `--bg-elevated` | `#FFFFFF` | Crisp white elevated workbench cards |
+| `--bg-panel` | `#F1EFE8` | Panels, sidebar drawers, tooltips |
+| `--ink` | `#121316` | Deep obsidian display & heading text |
+| `--text-muted` | `#565C69` | High-legibility body copy |
+| `--text-dim` | `#7A8191` | Metadata, tags, line timings |
+| `--line` | `rgba(18, 19, 22, 0.08)` | Refined hairline borders (0.5px - 1px) |
+| `--line-strong`| `rgba(18, 19, 22, 0.16)` | Active outlines & workbench borders |
+| `--accent` | `#E14017` | Rivet signature international vermilion orange |
+| `--accent-dim` | `rgba(225, 64, 23, 0.08)` | Badge backgrounds & interactive focus rings |
+| `--amber` | `#15803D` | Semantic live telemetry status indicator |
 
-### Light Theme (Cleanroom Wafer)
+### Dark Theme (Rivet Obsidian Studio)
 | Token | Value | Role |
 | :--- | :--- | :--- |
-| `--bg` | `#F4F6F8` | Clean ceramic wafer background |
-| `--bg-elevated` | `#FFFFFF` | Crisp white elevated cards |
-| `--bg-panel` | `#FAFBFD` | Modals & command palette |
-| `--ink` | `#0B0F15` | Deep graphite display text |
-| `--text-muted` | `#4B5565` | High-legibility body text |
-| `--text-dim` | `#758195` | Metadata & labels |
-| `--line` | `rgba(11, 15, 21, 0.08)` | Refined hairline borders |
-| `--line-strong`| `rgba(11, 15, 21, 0.20)` | Active borders |
-| `--accent` | `#EA3815` | High-contrast vermilion accent |
-| `--accent-dim` | `rgba(234, 56, 21, 0.10)` | Chip & pill backgrounds |
-| `--accent-secondary` | `#15803D` | Semantic live status indicator |
+| `--bg` | `#0D0E12` | Rich dark studio canvas base |
+| `--bg-elevated` | `#16181D` | Elevated workbench surface |
+| `--bg-panel` | `#1D2027` | Secondary panel elevations |
+| `--ink` | `#F3F4F6` | Primary high-contrast display text |
+| `--text-muted` | `#9CA3AF` | Body copy & description text |
+| `--text-dim` | `#6B7280` | Captions, timings, subtle metadata |
+| `--line` | `rgba(243, 244, 246, 0.08)` | Subtle card borders & dividers |
+| `--line-strong`| `rgba(243, 244, 246, 0.16)` | Hover borders & active outlines |
+| `--accent` | `#FF4D2E` | High-voltage vermilion accent |
+| `--accent-dim` | `rgba(255, 77, 46, 0.14)` | Badge backgrounds & subtle glow tint |
+| `--amber` | `#22C55E` | Semantic live status indicator |
 
 ---
 
@@ -53,42 +54,31 @@
 
 | Level | Family | Size / Leading | Tracking | Weight | Role |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Hero Display** | Bricolage Grotesque / Display | `clamp(2.75rem, 7vw, 5rem)` / `1.05` | `-0.035em` | 700 / 800 | Hero name & brand statement |
-| **Section Heading** | Bricolage Grotesque | `clamp(1.85rem, 4vw, 2.75rem)` / `1.1` | `-0.03em` | 700 | Section titles |
-| **Card Title** | Bricolage Grotesque | `1.25rem – 1.5rem` / `1.2` | `-0.02em` | 600 | Project & role titles |
-| **Body** | Public Sans | `0.95rem – 1.05rem` / `1.65` | `0em` | 400 | Descriptions & summaries (max 68ch) |
-| **Code / HUD / Tag** | IBM Plex Mono | `0.75rem – 0.85rem` / `1.4` | `0.04em` | 500 / 600 | Stack pills, dates, timings, metrics |
+| **Hero Display** | Inter / Neo-Grotesque | `clamp(2.2rem, 5.5vw, 4.4rem)` / `1.08` | `-0.035em` | 700 | Primary brand headline |
+| **Section Heading** | Inter / Display | `clamp(1.75rem, 4vw, 2.6rem)` / `1.15` | `-0.03em` | 700 | Section titles |
+| **Workbench Title**| Inter | `1.25rem – 1.45rem` / `1.2` | `-0.025em` | 700 | Direction inspector headers |
+| **Body** | Public Sans | `0.95rem – 1.05rem` / `1.6` | `0em` | 400 | Descriptions & summaries (max 68ch) |
+| **Code / HUD / Tag**| IBM Plex Mono | `0.72rem – 0.82rem` / `1.4` | `0.04em` | 500 / 600 | Prompts, stack pills, timings, metrics |
 
 ---
 
-## 4. Component Stylings
+## 4. Key Rivet Signature Components
 
-### Buttons & Interactive Controls
-- **Primary CTA**: High-contrast accent fill (`var(--accent)`), white text (`#FFFFFF`), rounded pill (`rounded-full`), spring scale feedback (`:active { transform: scale(0.98); }`), magnetic pull on hover.
-- **Ghost CTA**: Hairline border (`var(--line-strong)`), `var(--ink)` text, hover background tint (`var(--accent-dim)`).
-- **Pills & Chips**: Rounded `rounded-lg` or `rounded-full`, `0.75rem` font, subtle border, smooth hover lift (`translateY(-2px)`).
-- **Navigation**: Single line desktop header, fixed height `64px`, glassmorphic backdrop (`backdrop-filter: blur(16px)`), keyboard shortcut badge `<kbd>/</kbd>`.
+### 1. The Interactive Parallel Directions Workbench
+- Chrome top bar: `https://systems.mohith.dev/directions/...` address bar, traffic light dots, live status indicator, and Auto-Play / Pause switcher.
+- Left column: List of production engineering directions (`01 / Scan Chain ATE Agent`, `02 / Offline AI Assistant`, `03 / Deepfake Video Guard`, `04 / Corrupt Watch`).
+- Right column: Live interactive inspector canvas with real-time test vector injection, local LLM chat simulation, forensic frame scrubber, and streaming anomaly feed.
 
-### Cards & Panels
-- **Corner Radius**: Consistent `14px – 16px` (`rounded-2xl`).
-- **Borders**: 1px crisp border `var(--line)` with soft hover accent refraction.
-- **Shadows**: Multi-layer soft ambient shadow without heavy offset (`0 10px 30px -10px var(--shadow-ink)`).
-- **Zero AI-slop rule**: No arbitrary nested cards, no purple glow meshes, no duplicate CTA labels.
+### 2. Multi-Platform Prompt Bar
+- Quick CLI / agent installation bar with tabs for `[ Terminal ]`, `[ Claude Code ]`, `[ Cursor ]`, and `[ Codex ]`.
+- One-click copy with instant confirmation state and keyboard shortcut indicator (`/` opens Command HUD).
 
----
-
-## 5. Layout & Spacing
-
-- **Container Width**: Max `1280px` (`max-w-7xl mx-auto`), padding `px-4 sm:px-6 lg:px-8`.
-- **Section Spacing**: `py-20 md:py-28`.
-- **Hero Viewport**: `min-h-[100dvh]` with top padding `pt-20 md:pt-24`, all hero elements visible above the fold on desktop.
+### 3. Precision Corner Ticks
+- Technical registration crosshairs and corner brackets (`CornerTicks`) framing cards and interactive canvases.
 
 ---
 
-## 6. Motion & Interaction
+## 5. Motion & Accessibility
 
-- **Framer Motion physics**: Spring transitions `{ type: "spring", stiffness: 260, damping: 24 }`.
-- **Magnetic Buttons**: Native motion values tracking pointer offset.
-- **Diagnostics Radar**: Animated SVG polygons with interactive nodes and real-time category filters.
-- **Command HUD (`/`)**: Keyboard listener triggering blurred spotlight terminal for instant navigation.
-- **Accessibility**: Strict reduced-motion fallback honoring `prefers-reduced-motion`.
+- Deceleration easing: `cubic-bezier(0.16, 1, 0.3, 1)`.
+- Reduced-motion compliance with system preference overrides.

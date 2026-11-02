@@ -1,5 +1,7 @@
-import { Mail, MapPin, Phone } from 'lucide-react'
+import { useState } from 'react'
+import { ArrowUp, ArrowUpRight, Check, Copy, Mail, Phone } from 'lucide-react'
 import { profile } from '../data/resume'
+import { CornerTicks } from './CornerTicks'
 import { Reveal } from './Reveal'
 
 function LinkedInIcon() {
@@ -19,40 +21,144 @@ function GitHubIcon() {
 }
 
 export function Contact() {
+  const [copied, setCopied] = useState(false)
+  const contactCommand = `curl -sL https://systems.mohith.dev/contact.json`
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(contactCommand)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2400)
+    } catch {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2400)
+    }
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
     <section className="section contact-section" id="contact">
       <Reveal>
-        <h2 className="section-title">Let&apos;s build something that ships.</h2>
-        <p className="section-lead">
-          Open to AI software, ML engineering, and data-driven backend roles where systems meet intelligence.
-        </p>
-      </Reveal>
+        <div className="rivet-cta-banner">
+          <CornerTicks size={12} />
+          <h2 className="rivet-cta-title">
+            Built for engineering teams on the frontier of code and silicon.
+          </h2>
+          <p className="rivet-cta-lead">
+            Open to AI software engineer, machine learning systems, and backend platform roles.
+          </p>
 
-      <Reveal delay={0.1}>
-        <div className="contact-links">
-          <a className="contact-link" href={`mailto:${profile.email}`}>
-            <Mail size={18} /> {profile.email}
-          </a>
-          <a className="contact-link" href={profile.github} target="_blank" rel="noreferrer">
-            <GitHubIcon /> GitHub
-          </a>
-          <a className="contact-link" href={profile.linkedin} target="_blank" rel="noreferrer">
-            <LinkedInIcon /> LinkedIn
-          </a>
-          <a className="contact-link" href={`tel:${profile.phone.replace(/-/g, '')}`}>
-            <Phone size={18} /> {profile.phone}
-          </a>
-          <span className="contact-link" style={{ pointerEvents: 'none' }}>
-            <MapPin size={18} /> {profile.location}
-          </span>
+          {/* Quick CLI Contact Box */}
+          <div className="rivet-cta-cli-box">
+            <span className="cli-prompt-symbol">&gt;</span>
+            <code className="cli-command-text">{contactCommand}</code>
+            <button
+              type="button"
+              className="cli-copy-action"
+              onClick={handleCopy}
+              aria-label="Copy contact CLI command"
+            >
+              {copied ? <Check size={14} className="copied-icon" /> : <Copy size={14} />}
+              <span>{copied ? 'Copied' : 'Copy'}</span>
+            </button>
+          </div>
         </div>
       </Reveal>
 
-      <footer className="footer">
-        <span>© {new Date().getFullYear()} {profile.name}</span>
-        <a href={profile.github} target="_blank" rel="noreferrer">
-          github.com/naik1805
-        </a>
+      <Reveal delay={0.1}>
+        <div className="contact-links-grid">
+          <a className="rivet-contact-card" href={`mailto:${profile.email}`} target="_blank" rel="noreferrer">
+            <CornerTicks size={8} />
+            <div className="contact-card-icon">
+              <Mail size={18} />
+            </div>
+            <div className="contact-card-text">
+              <span className="contact-card-k">EMAIL DISPATCH</span>
+              <span className="contact-card-v">{profile.email}</span>
+            </div>
+            <ArrowUpRight size={15} className="contact-card-arrow" />
+          </a>
+
+          <a className="rivet-contact-card" href={profile.github} target="_blank" rel="noreferrer">
+            <CornerTicks size={8} />
+            <div className="contact-card-icon">
+              <GitHubIcon />
+            </div>
+            <div className="contact-card-text">
+              <span className="contact-card-k">GITHUB REPOSITORY</span>
+              <span className="contact-card-v">github.com/naik1805</span>
+            </div>
+            <ArrowUpRight size={15} className="contact-card-arrow" />
+          </a>
+
+          <a className="rivet-contact-card" href={profile.linkedin} target="_blank" rel="noreferrer">
+            <CornerTicks size={8} />
+            <div className="contact-card-icon">
+              <LinkedInIcon />
+            </div>
+            <div className="contact-card-text">
+              <span className="contact-card-k">LINKEDIN NETWORK</span>
+              <span className="contact-card-v">linkedin.com/in/mohith-naik</span>
+            </div>
+            <ArrowUpRight size={15} className="contact-card-arrow" />
+          </a>
+
+          <a className="rivet-contact-card" href={`tel:${profile.phone.replace(/-/g, '')}`}>
+            <CornerTicks size={8} />
+            <div className="contact-card-icon">
+              <Phone size={18} />
+            </div>
+            <div className="contact-card-text">
+              <span className="contact-card-k">DIRECT LINE</span>
+              <span className="contact-card-v">{profile.phone}</span>
+            </div>
+            <ArrowUpRight size={15} className="contact-card-arrow" />
+          </a>
+        </div>
+      </Reveal>
+
+      {/* Rivet Minimal Studio Footer */}
+      <footer className="rivet-studio-footer">
+        <div className="footer-top-row">
+          <div className="footer-brand-mark">
+            <span className="f-monogram">M</span>
+            <span className="f-title">MOHITH S</span>
+            <span className="f-sub">// AI SYSTEMS LAB</span>
+          </div>
+
+          <div className="footer-status-pill">
+            <span className="status-live-dot" />
+            <span>ALL SYSTEMS NOMINAL</span>
+          </div>
+
+          <button
+            type="button"
+            className="footer-back-to-top"
+            onClick={scrollToTop}
+            aria-label="Back to top"
+          >
+            <span>TOP</span>
+            <ArrowUp size={13} />
+          </button>
+        </div>
+
+        <div className="footer-bottom-row">
+          <span className="footer-copy-text">
+            © {new Date().getFullYear()} MOHITH S · BENGALURU, INDIA · ALL RIGHTS RESERVED
+          </span>
+          <div className="footer-meta-tags">
+            <span>ATE DIAGNOSTICS</span>
+            <span>·</span>
+            <span>AIRGAPPED LLM</span>
+            <span>·</span>
+            <span>ICAIH 2025</span>
+            <span>·</span>
+            <span>IEEE XPLORE</span>
+          </div>
+        </div>
       </footer>
     </section>
   )

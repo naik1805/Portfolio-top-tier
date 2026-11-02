@@ -1,20 +1,43 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowDown, ArrowUpRight, Cpu, Sparkles } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import {
+  ArrowDown,
+  Check,
+  Copy,
+} from 'lucide-react'
 import { profile } from '../data/resume'
-import { KineticLine } from './KineticLine'
-import { MagneticButton } from './MagneticButton'
+import { CornerTicks } from './CornerTicks'
+import { RivetWorkbench } from './RivetWorkbench'
 
-const NeuralScene = lazy(() =>
-  import('./NeuralScene').then((m) => ({ default: m.NeuralScene })),
-)
+type Platform = 'claude' | 'cursor' | 'codex' | 'terminal'
+
+const PLATFORMS: { id: Platform; label: string; command: string }[] = [
+  {
+    id: 'terminal',
+    label: 'Terminal',
+    command: 'npx mohith-diagnostics@latest --inspect',
+  },
+  {
+    id: 'claude',
+    label: 'Claude Code',
+    command: '/inspect https://github.com/naik1805/mohith-systems',
+  },
+  {
+    id: 'cursor',
+    label: 'Cursor',
+    command: '@mohith explore production-systems',
+  },
+  {
+    id: 'codex',
+    label: 'Codex / API',
+    command: 'curl -sL https://systems.mohith.dev/spec.json',
+  },
+]
 
 export function Hero() {
+  const [activePlatform, setActivePlatform] = useState<Platform>('terminal')
+  const [copied, setCopied] = useState(false)
   const [hudTime, setHudTime] = useState('--:--:--')
-  const { scrollY } = useScroll()
-  const visualY = useTransform(scrollY, [0, 600], [0, 80])
-  const copyY = useTransform(scrollY, [0, 600], [0, -30])
-  const opacity = useTransform(scrollY, [0, 480], [1, 0.4])
 
   useEffect(() => {
     const tick = () => {
@@ -33,128 +56,149 @@ export function Hero() {
     return () => clearInterval(id)
   }, [])
 
+  const currentCommand =
+    PLATFORMS.find((p) => p.id === activePlatform)?.command || PLATFORMS[0].command
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(currentCommand)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2400)
+    } catch {
+      // Fallback
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2400)
+    }
+  }
+
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
-    <section className="hero" id="top">
-      <motion.div className="hero-copy" style={{ y: copyY, opacity }}>
+    <section className="rivet-hero-section" id="top">
+      {/* Top Banner & Status Lockup */}
+      <div className="rivet-hero-container">
         <motion.div
-          className="hero-status"
+          className="rivet-brand-lockup"
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <div className="brand-bolt-icon" aria-hidden>
+            <span className="bolt-shape" />
+          </div>
+          <span className="brand-title-text">MOHITH S</span>
+          <span className="brand-slash-sep">/</span>
+          <span className="brand-role-sub">AI SYSTEMS ENGINEER</span>
+          <span className="brand-dot-sep">·</span>
+          <span className="brand-status-live">
+            <span className="pulse-dot" /> AVAILABLE FOR ROLES
+          </span>
+        </motion.div>
+
+        {/* Hero Title & Value Proposition */}
+        <div className="rivet-hero-headline-block">
+          <motion.h1
+            className="rivet-hero-display"
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            Dual-engine AI and systems engineer on the frontier of code and silicon.
+          </motion.h1>
+
+          <motion.p
+            className="rivet-hero-lead"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          >
+            Building high-throughput semiconductor diagnostic engines, autonomous agent architectures,
+            and privacy-first airgapped models that ship from raw telemetry into production. Dual-published researcher in ICAIH 2025 and IEEE Xplore.
+          </motion.p>
+        </div>
+
+        {/* Signature Rivet Platform Prompt Bar */}
+        <motion.div
+          className="rivet-prompt-bar-wrap"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="hero-status-dot" />
-          <span>Available for AI · ML · Systems Engineering</span>
-        </motion.div>
+          <div className="rivet-prompt-box">
+            <CornerTicks size={8} />
 
-        <motion.div
-          className="hero-headline-wrap"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <h1 className="hero-brand" aria-label={profile.name}>
-            MOHITH <span className="hero-accent-mark">S</span>
-          </h1>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.35, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <KineticLine />
-        </motion.div>
-
-        <motion.p
-          className="hero-role"
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.48, duration: 0.6 }}
-        >
-          Dual-published AI Systems Engineer specialized in semiconductor ATE diagnostics, autonomous agents, and high-throughput Python backends.
-        </motion.p>
-
-        <motion.div
-          className="hero-actions"
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-        >
-          <MagneticButton
-            className="btn-primary"
-            onClick={() => scrollTo('projects')}
-          >
-            Explore Systems <Cpu size={16} />
-          </MagneticButton>
-          <MagneticButton
-            className="btn-ghost"
-            onClick={() => scrollTo('contact')}
-          >
-            Get in touch <ArrowUpRight size={16} />
-          </MagneticButton>
-        </motion.div>
-
-        <motion.div
-          className="hero-meta"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.75, duration: 0.6 }}
-        >
-          <span className="hero-meta-item">
-            <strong>LOC</strong> {profile.location}
-          </span>
-          <span className="hero-meta-item">
-            <strong>PUB</strong> ICAIH 2025 · IEEE Xplore
-          </span>
-          <a
-            className="hero-meta-item"
-            href={profile.github}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <strong>GH</strong> naik1805
-          </a>
-          <span className="hero-cmd-tip">
-            <Sparkles size={12} className="tip-sparkle" /> Press <kbd>/</kbd> for command HUD
-          </span>
-        </motion.div>
-      </motion.div>
-
-      <motion.div
-        className="hero-visual"
-        style={{ y: visualY }}
-        initial={{ opacity: 0, scale: 0.94 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.3, duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <div className="hero-visual-stage">
-          <Suspense fallback={<div className="neural-fallback" />}>
-            <NeuralScene />
-          </Suspense>
-          <div className="hero-visual-caption">
-            <div className="caption-live-indicator">
-              <span className="caption-pulse" />
-              <span>DIAGNOSTIC GRAPH</span>
+            {/* Platform Selector Tabs */}
+            <div className="prompt-platform-tabs">
+              {PLATFORMS.map((platform) => (
+                <button
+                  key={platform.id}
+                  type="button"
+                  className={`platform-tab ${activePlatform === platform.id ? 'is-active' : ''}`}
+                  onClick={() => setActivePlatform(platform.id)}
+                >
+                  {platform.label}
+                </button>
+              ))}
             </div>
-            <span className="caption-time">{hudTime} IST</span>
-          </div>
-        </div>
-      </motion.div>
 
-      <motion.div
-        className="hero-scroll-cue"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.1, duration: 0.8 }}
-        onClick={() => scrollTo('about')}
-      >
-        <span>SCROLL TO EXPLORE</span>
-        <ArrowDown size={14} className="scroll-arrow" />
-      </motion.div>
+            {/* Command Display & Copy Trigger */}
+            <div className="prompt-command-row">
+              <div className="command-code-text">
+                <span className="prompt-dollar">&gt;</span>
+                <span className="command-string">{currentCommand}</span>
+              </div>
+
+              <button
+                type="button"
+                className="command-copy-btn"
+                onClick={handleCopy}
+                aria-label="Copy command to clipboard"
+                title="Copy command"
+              >
+                {copied ? <Check size={14} className="copied-icon" /> : <Copy size={14} />}
+                <span>{copied ? 'Copied to Clipboard' : 'Copy'}</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Quick HUD Hint */}
+          <div className="hero-prompt-meta">
+            <span className="prompt-meta-item">
+              <span className="key-kbd">/</span> opens Command HUD
+            </span>
+            <span className="prompt-meta-divider">·</span>
+            <span className="prompt-meta-item">
+              <strong>LOC</strong> {profile.location}
+            </span>
+            <span className="prompt-meta-divider">·</span>
+            <span className="prompt-meta-item">
+              <strong>PUB</strong> ICAIH 2025 & IEEE Xplore
+            </span>
+            <span className="prompt-meta-divider">·</span>
+            <span className="prompt-meta-item">
+              <strong>TIME</strong> {hudTime} IST
+            </span>
+          </div>
+        </motion.div>
+
+        {/* Centerpiece: Interactive Rivet Workbench */}
+        <motion.div
+          className="rivet-hero-workbench-mount"
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <RivetWorkbench />
+        </motion.div>
+
+        {/* Scroll Cue */}
+        <div className="rivet-scroll-cue" onClick={() => scrollTo('skills')}>
+          <span>EXPLORE ARCHITECTURE & RESEARCH</span>
+          <ArrowDown size={14} className="scroll-arrow-icon" />
+        </div>
+      </div>
     </section>
   )
 }
