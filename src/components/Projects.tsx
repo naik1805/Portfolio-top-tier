@@ -61,7 +61,7 @@ export function Projects() {
             <div className="project-header-left">
               <span className="project-index-num">01 / SILICON ATE</span>
               <h3 className="project-card-title">Scan Chain Diagnosis Agent</h3>
-              <p className="project-card-subtitle">Verileumen Labs · Semiconductor Automated Test Equipment</p>
+              <p className="project-card-subtitle">Verilumen Labs · Semiconductor Automated Test Equipment</p>
             </div>
             <span className="project-status-pill production">
               <span className="status-live-dot" /> PRODUCTION

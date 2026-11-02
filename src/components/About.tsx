@@ -46,7 +46,7 @@ export function About() {
         <Reveal className="about-text" delay={0.1}>
           <p>{profile.summary}</p>
           <p>
-            Currently at Verileumen Labs building AI agents for semiconductor ATE workflows: from
+            Currently full-time AI Engineer at Verilumen Labs building AI agents for semiconductor ATE workflows: from
             scan-chain fault localization to confidence-scored root-cause prediction served over FastAPI and containerized with Docker.
           </p>
         </Reveal>

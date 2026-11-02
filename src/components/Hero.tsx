@@ -90,7 +90,7 @@ export function Hero() {
           </div>
           <span className="brand-title-text">MOHITH S</span>
           <span className="brand-slash-sep">/</span>
-          <span className="brand-role-sub">AI SYSTEMS ENGINEER</span>
+          <span className="brand-role-sub">AI ENGINEER · SEMICONDUCTORS</span>
           <span className="brand-dot-sep">·</span>
           <span className="brand-status-live">
             <span className="pulse-dot" /> AVAILABLE FOR ROLES

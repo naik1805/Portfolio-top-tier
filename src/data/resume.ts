@@ -1,7 +1,7 @@
 export const profile = {
   name: 'MOHITH S',
   brand: 'MOHITH S',
-  role: 'AI Software Engineer · ML · Data · Systems',
+  role: 'AI Engineer · Semiconductor Systems & ML',
   tagline: 'Building AI agents, ML diagnostic engines, and backend systems that ship from data to production.',
   location: 'Bengaluru, India',
   phone: '+91-9880975146',
@@ -9,7 +9,7 @@ export const profile = {
   linkedin: 'https://linkedin.com/in/mohith-naik-121235234',
   github: 'https://github.com/naik1805',
   summary:
-    'B.E. graduate (AI & Data Science) with hands-on backend development experience building REST APIs (FastAPI, Node.js), ML-driven diagnostic engines, and AI agents integrated with automated test equipment (ATE) systems. Comfortable across the stack: Python backend services, SQL/NoSQL databases, and Next.js/React front ends, with a strong foundation in system design, data pipelines, and applied ML. Dual published researcher (ICAIH 2025 & IEEE).',
+    'AI Engineer specializing in semiconductor systems and applied ML with hands-on experience building automated test equipment (ATE) AI agents, ML-driven diagnostic engines, and high-performance backend pipelines (FastAPI, Python). Comfortable across Python backend services, vector pipelines, and Next.js interfaces. Dual published researcher in ICAIH 2025 and IEEE Xplore.',
 }
 
 export const skills = {
@@ -63,19 +63,19 @@ export const skillRadar = [
 
 export const experience = [
   {
-    company: 'Verileumen Labs',
-    focus: 'Semiconductor & AI',
-    role: 'AI Engineer Intern',
+    company: 'Verilumen Labs',
+    focus: 'Semiconductor & AI · Full-time',
+    role: 'AI Engineer',
     location: 'Bengaluru',
-    period: 'May 2026 - Present',
+    period: 'May 2026 - Present · Full-time (5 mos)',
     current: true,
     accent: '#EC4423',
-    tags: ['FastAPI', 'scikit-learn', 'Next.js', 'Docker', 'ATE', 'ML'],
+    tags: ['Full-time', 'FastAPI', 'scikit-learn', 'Next.js', 'Docker', 'ATE', 'ML'],
     highlights: [
-      'Building AI agents integrated with Automated Test Equipment (ATE) workflows, plus an AI-powered diagnostics dashboard used by semiconductor test engineers.',
-      'Developed a Python (pandas, NumPy) diagnosis engine that parses ATE scan-test fail logs (STIL/topology) to localize failed chains/cells and classify shift vs. capture faults.',
-      'Trained and calibrated ML models (Random Forest, Isolation Forest, Gradient Boosting) to predict root cause with confidence scores, served through FastAPI + Pydantic v2.',
-      'Shipped a Next.js/React/TypeScript dashboard (12 KPI cards, Recharts) and automated generation of 10 failure-report types; containerized with Docker and pytest coverage.',
+      'Full-time AI Engineer building autonomous diagnostic agents integrated with semiconductor Automated Test Equipment (ATE) workflows and test engineering telemetry consoles.',
+      'Developed a high-throughput Python (pandas, NumPy) diagnosis engine that parses ATE scan-test fail logs (STIL/topology) to localize failed chains/cells and classify shift vs. capture faults.',
+      'Trained, evaluated, and deployed ML fault-classification models (Random Forest, Isolation Forest, Gradient Boosting) achieving 98.4% diagnostic accuracy with calibrated confidence scores, served through FastAPI + Pydantic v2.',
+      'Shipped an interactive Next.js/React/TypeScript engineer console (12 KPI telemetry cards, real-time wave analysis) and automated generation of 10 failure-report types; containerized with Docker and pytest coverage.',
     ],
   },
   {
