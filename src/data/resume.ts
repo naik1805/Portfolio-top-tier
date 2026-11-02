@@ -69,7 +69,7 @@ export const experience = [
     location: 'Bengaluru',
     period: 'May 2026 - Present',
     current: true,
-    accent: '#FF4D2E',
+    accent: '#EC4423',
     tags: ['FastAPI', 'scikit-learn', 'Next.js', 'Docker', 'ATE', 'ML'],
     highlights: [
       'Building AI agents integrated with Automated Test Equipment (ATE) workflows, plus an AI-powered diagnostics dashboard used by semiconductor test engineers.',
@@ -85,7 +85,7 @@ export const experience = [
     location: 'Bengaluru',
     period: 'Feb 2026 - Apr 2026',
     current: false,
-    accent: '#FF4D2E',
+    accent: '#642E39',
     tags: ['NLP', 'Recommendation', 'Anomaly Detection', 'REST APIs', 'Pipelines'],
     highlights: [
       'Built an AI-driven product recommendation engine (collaborative filtering + NLP semantic search) and an ML-based anomaly detection module for fraudulent transactions.',

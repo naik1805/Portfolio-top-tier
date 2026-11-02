@@ -5,33 +5,41 @@
 
 :root,
 html[data-theme='light'] {
-  /* Light: Rivet Studio Canvas */
-  --bg: #faf7ee;
+  /* Light: Rivet Studio Canvas - Exact match from rivet.design */
+  --bg: #fafafa;
+  --bg-canvas: #f1efe8;
   --bg-elevated: #ffffff;
   --bg-panel: #f1efe8;
-  --ink: #121316;
-  --line: rgba(18, 19, 22, 0.08);
-  --line-strong: rgba(18, 19, 22, 0.16);
-  --text: #121316;
-  --text-muted: #565c69;
-  --text-dim: #7a8191;
-  --cyan: #e14017;
-  --cyan-dim: rgba(225, 64, 23, 0.08);
-  --accent: #e14017;
-  --accent-dim: rgba(225, 64, 23, 0.08);
-  --amber: #15803d;
-  --amber-dim: rgba(21, 128, 61, 0.10);
-  --violet: #475569;
-  --nav-glass: rgba(250, 247, 238, 0.88);
-  --mobile-glass: rgba(250, 247, 238, 0.98);
-  --overlay: rgba(18, 19, 22, 0.45);
-  --grid-line: rgba(18, 19, 22, 0.04);
-  --shadow-ink: rgba(18, 19, 22, 0.06);
-  --card-wash: rgba(255, 255, 255, 0.7);
-  --marquee-em: #e14017;
-  --scene-ink: #121316;
-  --scene-signal: #e14017;
-  --scene-oxide: #15803d;
+  --bg-panel-subtle: #f8f7f4;
+  --bg-dark-stage: #1e1e22;
+  --bg-dark-panel: #17171a;
+  --ink: #000000;
+  --line: rgba(0, 0, 0, 0.08);
+  --line-strong: rgba(0, 0, 0, 0.15);
+  --text: #171717;
+  --text-muted: #4b5563;
+  --text-dim: #8c8071;
+  --cyan: #ec4423;
+  --cyan-dim: rgba(236, 68, 35, 0.09);
+  --accent: #ec4423;
+  --accent-hover: #e8552f;
+  --accent-gradient: linear-gradient(137.74deg, rgb(236, 68, 35) 41.128%, rgb(243, 138, 118) 121.74%);
+  --accent-dim: rgba(236, 68, 35, 0.09);
+  --accent-secondary: #642e39;
+  --accent-slate: #6273a1;
+  --amber: #28c840;
+  --amber-dim: rgba(40, 200, 64, 0.12);
+  --violet: #642e39;
+  --nav-glass: rgba(250, 250, 250, 0.88);
+  --mobile-glass: rgba(241, 239, 232, 0.98);
+  --overlay: rgba(0, 0, 0, 0.45);
+  --grid-line: rgba(0, 0, 0, 0.03);
+  --shadow-ink: rgba(0, 0, 0, 0.06);
+  --card-wash: rgba(255, 255, 255, 0.8);
+  --marquee-em: #ec4423;
+  --scene-ink: #000000;
+  --scene-signal: #ec4423;
+  --scene-oxide: #28c840;
   --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   --font-body: 'Public Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
@@ -45,33 +53,51 @@ html[data-theme='light'] {
 }
 
 html[data-theme='dark'] {
-  /* Dark: Rivet Obsidian Studio */
-  --bg: #0d0e12;
-  --bg-elevated: #16181d;
-  --bg-panel: #1d2027;
-  --ink: #f3f4f6;
-  --line: rgba(243, 244, 246, 0.08);
-  --line-strong: rgba(243, 244, 246, 0.16);
+  /* Dark: Rivet Night Studio (charcoal-black & warm vermilion) */
+  --bg: #121316;
+  --bg-canvas: #1c1c20;
+  --bg-elevated: #1e1e22;
+  --bg-panel: #232328;
+  --bg-panel-subtle: #19191d;
+  --bg-dark-stage: #17171a;
+  --bg-dark-panel: #111113;
+  --ink: #ffffff;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.16);
   --text: #f3f4f6;
   --text-muted: #9ca3af;
-  --text-dim: #6b7280;
-  --cyan: #ff4d2e;
-  --cyan-dim: rgba(255, 77, 46, 0.14);
-  --accent: #ff4d2e;
-  --accent-dim: rgba(255, 77, 46, 0.14);
-  --amber: #22c55e;
-  --amber-dim: rgba(34, 197, 94, 0.12);
-  --violet: #818cf8;
-  --nav-glass: rgba(13, 14, 18, 0.88);
-  --mobile-glass: rgba(22, 24, 29, 0.98);
+  --text-dim: #71717a;
+  --cyan: #ec4423;
+  --cyan-dim: rgba(236, 68, 35, 0.15);
+  --accent: #ec4423;
+  --accent-hover: #e8552f;
+  --accent-gradient: linear-gradient(137.74deg, rgb(236, 68, 35) 41.128%, rgb(243, 138, 118) 121.74%);
+  --accent-dim: rgba(236, 68, 35, 0.15);
+  --accent-secondary: #9aa6c6;
+  --accent-slate: #6b97ff;
+  --amber: #28c840;
+  --amber-dim: rgba(40, 200, 64, 0.15);
+  --violet: #9aa6c6;
+  --nav-glass: rgba(18, 19, 22, 0.88);
+  --mobile-glass: rgba(28, 28, 32, 0.98);
   --overlay: rgba(0, 0, 0, 0.7);
-  --grid-line: rgba(243, 244, 246, 0.03);
+  --grid-line: rgba(255, 255, 255, 0.03);
   --shadow-ink: rgba(0, 0, 0, 0.5);
-  --card-wash: rgba(22, 24, 29, 0.7);
-  --marquee-em: #ff6b4a;
-  --scene-ink: #f3f4f6;
-  --scene-signal: #ff4d2e;
-  --scene-oxide: #22c55e;
+  --card-wash: rgba(30, 30, 34, 0.7);
+  --marquee-em: #ec6442;
+  --scene-ink: #ffffff;
+  --scene-signal: #ec4423;
+  --scene-oxide: #28c840;
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Public Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+  --nav-h: 64px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-pill: 9999px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html {
@@ -566,17 +592,20 @@ canvas {
   gap: 0.55rem;
   padding: 0.85rem 1.5rem;
   border-radius: var(--radius-pill);
-  background: var(--accent);
+  background-image: var(--accent-gradient);
+  background-color: var(--accent);
   color: #ffffff;
+  border: 1px solid rgba(236, 68, 35, 0.25);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   font-weight: 600;
   font-size: 0.88rem;
   letter-spacing: 0.01em;
-  transition: transform 0.25s var(--ease-out), filter 0.25s;
+  transition: transform 0.25s var(--ease-out), box-shadow 0.25s;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  filter: brightness(1.1);
+  box-shadow: 0 6px 18px rgba(236, 68, 35, 0.35);
 }
 
 .btn-ghost {
@@ -587,15 +616,17 @@ canvas {
   border-radius: var(--radius-pill);
   border: 1px solid var(--line-strong);
   background: var(--bg-elevated);
-  color: var(--ink);
-  font-weight: 600;
+  color: var(--text);
+  font-weight: 500;
   font-size: 0.88rem;
-  transition: border-color 0.25s, transform 0.25s var(--ease-out), background 0.25s;
+  transition: transform 0.25s var(--ease-out), border-color 0.2s, background 0.2s;
 }
 
 .btn-ghost:hover {
-  border-color: var(--ink);
   transform: translateY(-2px);
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
 }
 
 .hero-meta {
@@ -2102,7 +2133,7 @@ canvas {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #22c55e;
+  background: var(--amber);
   animation: pulse-dot 2s infinite;
 }
 
@@ -2990,9 +3021,11 @@ canvas {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  background: var(--accent);
+  background-image: var(--accent-gradient);
+  background-color: var(--accent);
   color: #ffffff;
-  border: none;
+  border: 1px solid rgba(236, 68, 35, 0.25);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 0.85rem;
@@ -3005,7 +3038,7 @@ canvas {
 .nav-cta-btn:hover {
   opacity: 0.94;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(225, 64, 23, 0.24);
+  box-shadow: 0 4px 14px rgba(236, 68, 35, 0.35);
 }
 
 .nav-cta-btn:active {
@@ -3110,6 +3143,12 @@ canvas {
   padding-right: 1.25rem;
   max-width: 1320px;
   margin: 0 auto;
+  background: linear-gradient(180deg, #f1efe7 0%, rgba(250, 250, 250, 0) 100%);
+  border-radius: 20px;
+}
+
+html[data-theme='dark'] .rivet-hero-section {
+  background: linear-gradient(180deg, #1c1c20 0%, rgba(18, 19, 22, 0) 100%);
 }
 
 .rivet-hero-container {
@@ -3854,20 +3893,23 @@ canvas {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  background: var(--accent);
+  background-image: var(--accent-gradient);
+  background-color: var(--accent);
   color: #ffffff;
-  border: none;
+  border: 1px solid rgba(236, 68, 35, 0.25);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 600;
   padding: 0.35rem 0.75rem;
   border-radius: 6px;
   cursor: pointer;
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.2s ease;
 }
 
 .sim-action-btn:hover {
-  opacity: 0.92;
+  opacity: 0.94;
+  box-shadow: 0 4px 14px rgba(236, 68, 35, 0.35);
 }
 
 .sim-action-btn.is-running {

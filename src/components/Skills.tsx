@@ -24,42 +24,42 @@ const groups = [
   {
     id: 'backend',
     title: 'Backend & APIs',
-    accent: '#FF4D2E',
+    accent: '#EC4423',
     blurb: 'Production services & REST APIs',
     items: skills.backend,
   },
   {
     id: 'languages',
     title: 'Languages',
-    accent: '#22C55E',
+    accent: '#642E39',
     blurb: 'Primary & compiled systems',
     items: skills.languages,
   },
   {
     id: 'ml',
     title: 'ML / AI',
-    accent: '#FF4D2E',
+    accent: '#EC4423',
     blurb: 'Agents, RAG & vision models',
     items: skills.ml,
   },
   {
     id: 'databases',
     title: 'Databases',
-    accent: '#3B82F6',
+    accent: '#6273A1',
     blurb: 'Relational, document & vector stores',
     items: skills.databases,
   },
   {
     id: 'frontend',
     title: 'Frontend',
-    accent: '#22C55E',
+    accent: '#28C840',
     blurb: 'Interactive telemetry dashboards',
     items: skills.frontend,
   },
   {
     id: 'tools',
     title: 'Tools & Data',
-    accent: '#3B82F6',
+    accent: '#6273A1',
     blurb: 'Pipelines, testing & caching',
     items: skills.tools,
   },
@@ -73,11 +73,11 @@ function RadarChart({
   onHover: (i: number | null) => void
 }) {
   const { theme } = useTheme()
-  const signal = theme === 'dark' ? '#FF4D2E' : '#EA3815'
-  const oxide = theme === 'dark' ? '#22C55E' : '#15803D'
-  const ink = theme === 'dark' ? '#F0F4F8' : '#0B0F15'
-  const muted = theme === 'dark' ? '#8C9BB0' : '#4B5565'
-  const gridStroke = theme === 'dark' ? 'rgba(240,244,248,0.1)' : 'rgba(11,15,21,0.08)'
+  const signal = '#EC4423'
+  const oxide = '#28C840'
+  const ink = theme === 'dark' ? '#F3F4F6' : '#000000'
+  const muted = theme === 'dark' ? '#9CA3AF' : '#6B7280'
+  const gridStroke = theme === 'dark' ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'
   const size = 380
   const cx = size / 2
   const cy = size / 2

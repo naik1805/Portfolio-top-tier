@@ -12,12 +12,12 @@
     <script>
       (function () {
         try {
-          var stored = localStorage.getItem('mohith-theme');
-          var theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
+          var stored = localStorage.getItem('mohith-theme-v3');
+          var theme = stored === 'light' || stored === 'dark' ? stored : 'light';
           document.documentElement.dataset.theme = theme;
           document.documentElement.style.colorScheme = theme;
         } catch (e) {
-          document.documentElement.dataset.theme = 'dark';
+          document.documentElement.dataset.theme = 'light';
         }
       })();
     </script>
